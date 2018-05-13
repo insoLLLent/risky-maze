@@ -24,7 +24,7 @@ namespace ru.lifanoff.Maze {
 
 
         #region Unity Engine
-        private void Awake() {
+        void Awake() {
             // Сгенерировать лабиринт случайного размера
             int mazeSizeX = Random.Range(MIN_SIZE_MAZE, MAX_SIZE_MAZE);
             int mazeSizeY = Random.Range(MIN_SIZE_MAZE, MAX_SIZE_MAZE);
