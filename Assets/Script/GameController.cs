@@ -50,7 +50,7 @@ namespace ru.lifanoff {
 
         #region Настройки игрока
         /// <summary>Есть ли у игрока ключ от выхода</summary>
-        public bool playerHasKey;
+        [HideInInspector] public bool playerHasKey;
         #endregion
 
 

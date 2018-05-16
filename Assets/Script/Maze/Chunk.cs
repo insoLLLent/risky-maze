@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace ru.lifanoff.Maze {
+﻿namespace ru.lifanoff.Maze {
 
     /// <summary>
     /// Один структурный блок лабиринта

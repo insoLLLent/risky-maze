@@ -4,13 +4,13 @@ using UnityEngine;
 namespace ru.lifanoff {
 
     /// <summary>
-    /// Статичный класс, содержащий общие константные значения
+    /// Статичный класс, содержащий общие константы
     /// </summary>
     public static class Unchangeable {
 
         #region Time.timeScale
         public const float DEFAULT_TIMESCALE = 1f;
-        // public const float PAUSE_TIMESCALE = .001f;
+        public const float PAUSE_TIMESCALE = 0f;
         #endregion
 
         #region Tags
@@ -25,15 +25,9 @@ namespace ru.lifanoff {
         #region Layers
         public const string DEFAULT_LAYER = "Default";
         public const string UI_LAYER = "UI";
-        // public const string DRAW_ALWAYS_LAYER = "DrawAlways";
-        // public const string WATER_LAYER = "Water";
+        public const string DRAW_ALWAYS_LAYER = "Wall";
         #endregion
-
-
-        #region Colors
-        public const string FOG_COLOR = "969797FF";
-        #endregion
-
+        
         #region Player
         public static float DISTANCE_PLAYER_RAYCAST = 2.05f;
         #endregion

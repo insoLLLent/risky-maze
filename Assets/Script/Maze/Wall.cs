@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace ru.lifanoff.Maze {
+﻿namespace ru.lifanoff.Maze {
 
     /// <summary>
     /// Класс, описывающий объект стены

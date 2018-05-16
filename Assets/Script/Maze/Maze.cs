@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace ru.lifanoff.Maze {
 
@@ -14,9 +11,9 @@ namespace ru.lifanoff.Maze {
         private float chunkSize;
 
         /// <summary>Минимальный размер лабиринта</summary>
-        private const int MIN_SIZE_MAZE = 20;
+        private const int MIN_SIZE_MAZE = 10;
         /// <summary>Максимальный размер лабиринта</summary>
-        private const int MAX_SIZE_MAZE = 40;
+        private const int MAX_SIZE_MAZE = 15;
 
         /// <summary>Игровой контроллер</summary>
         private GameController gameController;
@@ -59,13 +56,113 @@ namespace ru.lifanoff.Maze {
         /// <summary>Разместить префабы на сцене</summary>
         private void PlacePrefabsOnScene() {
             foreach (Chunk chunk in mazeStructure) {
-                //PlaceWalls(chunk);
+                PlaceWalls(chunk);
                 PlaceFloors(chunk);
-                //PlaceExitKey(chunk);
+                PlaceExitKey(chunk);
             }
         }
 
-        /// <summary>Разместить префаб пола</summary>
+
+        #region PlaceWalls
+        /// <summary>Разместить префабы стен</summary>
+        /// <param name="chunk">Текущий блок лабиринта</param>
+        private void PlaceWalls(Chunk chunk) {
+            if (chunk.hasLeftWall) PlaceLeftWalls(chunk);
+            if (chunk.hasRightWall) PlaceRightWalls(chunk);
+            if (chunk.hasTopWall) PlaceTopWalls(chunk);
+            if (chunk.hasBottomWall) PlaceBottomWalls(chunk);
+        }
+
+        /// <summary>Разместить префаб левой стены</summary>
+        /// <param name="chunk">Текущий блок лабиринта</param>
+        private void PlaceLeftWalls(Chunk chunk) {
+            Vector3 newPosition = Vector3.zero;
+            newPosition.x = chunk.x * chunkSize + chunkSize / 2f;
+            newPosition.z = chunk.y * chunkSize - chunkSize / 2f;
+
+            Vector3 newRotation = Vector3.zero;
+
+            GameObject gameObjectWall = PlaceAnyWalls(newPosition, Quaternion.Euler(newRotation));
+            if (chunk.leftWall.hasExit) InsertExitDoor(gameObjectWall);
+        }
+
+        /// <summary>Разместить префаб правой стены</summary>
+        /// <param name="chunk">Текущий блок лабиринта</param>
+        private void PlaceRightWalls(Chunk chunk) {
+            Vector3 newPosition = Vector3.zero;
+            newPosition.x = chunk.x * chunkSize + chunkSize / 2f;
+            newPosition.z = chunk.y * chunkSize + chunkSize / 2f;
+
+            Vector3 newRotation = Vector3.zero;
+            newRotation.y = 180f;
+
+            GameObject gameObjectWall = PlaceAnyWalls(newPosition, Quaternion.Euler(newRotation));
+            if (chunk.rightWall.hasExit) InsertExitDoor(gameObjectWall);
+        }
+
+        /// <summary>Разместить префаб верхней стены</summary>
+        /// <param name="chunk">Текущий блок лабиринта</param>
+        private void PlaceTopWalls(Chunk chunk) {
+            Vector3 newPosition = Vector3.zero;
+            newPosition.x = chunk.x * chunkSize;
+            newPosition.z = chunk.y * chunkSize;
+
+            Vector3 newRotation = Vector3.zero;
+            newRotation.y = 90f;
+
+            GameObject gameObjectWall = PlaceAnyWalls(newPosition, Quaternion.Euler(newRotation));
+            if (chunk.topWall.hasExit) InsertExitDoor(gameObjectWall);
+        }
+
+        /// <summary>Разместить префаб нижней стены</summary>
+        /// <param name="chunk">Текущий блок лабиринта</param>
+        private void PlaceBottomWalls(Chunk chunk) {
+            Vector3 newPosition = Vector3.zero;
+            newPosition.x = chunk.x * chunkSize + chunkSize;
+            newPosition.z = chunk.y * chunkSize;
+
+            Vector3 newRotation = Vector3.zero;
+            newRotation.y = -90f;
+
+            GameObject gameObjectWall = PlaceAnyWalls(newPosition, Quaternion.Euler(newRotation));
+            if (chunk.bottomWall.hasExit) InsertExitDoor(gameObjectWall);
+        }
+
+        /// <summary>Разместить префаб любой стены</summary>
+        /// <param name="wallPosition">Место расположения на поле</param>
+        /// <param name="wallRotation">Угол разворота</param>
+        /// <returns>Возвращает размещенный на сцене объект стены</returns>
+        private GameObject PlaceAnyWalls(Vector3 wallPosition, Quaternion wallRotation) {
+            MazePrefabID mazePrefabID = MazePrefabID.WALL;
+            int numnberRandomPrefab = mazePrefabContainer.GetRandomNumberPrefab(mazePrefabID);
+
+            GameObject cloningPrefab = mazePrefabContainer.prefabs[mazePrefabID][numnberRandomPrefab];
+
+            GameObject gameObjectWall = Instantiate(cloningPrefab, transform) as GameObject;
+
+            gameObjectWall.transform.position = wallPosition;
+            gameObjectWall.transform.rotation = wallRotation;
+            gameObjectWall.SetActive(true);
+
+            return gameObjectWall;
+        }
+
+        /// <summary>Вставить дверь в объект <paramref name="anyGameObject"/></summary>
+        /// <param name="anyGameObject">Объект, в котоый будет помещена дверь</param>
+        private void InsertExitDoor(GameObject anyGameObject) {
+            MazePrefabID mazePrefabID = MazePrefabID.EXIT_DOOR;
+            int numnberRandomPrefab = mazePrefabContainer.GetRandomNumberPrefab(mazePrefabID);
+
+            GameObject cloningPrefab = mazePrefabContainer.prefabs[mazePrefabID][numnberRandomPrefab];
+
+            GameObject gameObjectExitDoor = Instantiate(cloningPrefab, anyGameObject.transform) as GameObject;
+
+            gameObjectExitDoor.SetActive(true);
+        }
+        #endregion PlaceWalls
+
+
+        /// <summary>Разместить префабы пола</summary>
         /// <param name="chunk">Текущий блок лабиринта</param>
         private void PlaceFloors(Chunk chunk) {
             MazePrefabID mazePrefabID = MazePrefabID.FLOOR;
@@ -81,6 +178,26 @@ namespace ru.lifanoff.Maze {
 
             gameObjectFloor.transform.position = newPosition;
             gameObjectFloor.SetActive(true);
+        }
+
+        /// <summary>Разместить префабы пола</summary>
+        /// <param name="chunk">Текущий блок лабиринта</param>
+        private void PlaceExitKey(Chunk chunk) {
+            if (!chunk.hasExitKey) return;
+
+            MazePrefabID mazePrefabID = MazePrefabID.EXIT_KEY;
+            int numnberRandomPrefab = mazePrefabContainer.GetRandomNumberPrefab(mazePrefabID);
+
+            GameObject cloningPrefab = mazePrefabContainer.prefabs[mazePrefabID][numnberRandomPrefab];
+
+            GameObject gameObjectExitKey = Instantiate(cloningPrefab, transform) as GameObject;
+
+            Vector3 newPosition = Vector3.zero;
+            newPosition.x = chunk.x * chunkSize + chunkSize / 2f;
+            newPosition.z = chunk.y * chunkSize;
+
+            gameObjectExitKey.transform.position = newPosition;
+            gameObjectExitKey.SetActive(true);
         }
 
 

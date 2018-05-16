@@ -190,6 +190,7 @@ namespace ru.lifanoff.Maze {
                         (chunk.hasBottomChunk && chunk.bottomChunk.isChecked)) {
 
                         currentChunk = chunk;
+                        currentChunk.isChecked = true;
                         Hunt_RemoveRandomWall(ref currentChunk);
                         this.Reset();
                         break;
@@ -270,7 +271,7 @@ namespace ru.lifanoff.Maze {
                     break;
                 case Side.BOTTOM:
                     currentChunk.bottomWall = null;
-                    currentChunk.bottomChunk.leftWall = null;
+                    currentChunk.bottomChunk.topWall = null;
                     newCurrentChunk = currentChunk.bottomChunk;
                     break;
             }

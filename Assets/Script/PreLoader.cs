@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 namespace ru.lifanoff {
 
     /// <summary>
-    /// Прездагрузка сцен
+    /// Предзагрузка сцен
     /// </summary>
     public class PreLoader : MonoBehaviour {
 

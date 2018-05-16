@@ -64,7 +64,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsInspector:
+  - id: 0
+    prefab: {fileID: 1377551099113590, guid: c24e2d7848f2e3f4e87a85aca2e17ea9, type: 2}
+  - id: 1
+    prefab: {fileID: 1249075527543646, guid: af375649ae9abf643a1f3f9844c98e27, type: 2}
+  - id: 1
+    prefab: {fileID: 1084788148697604, guid: 698284f5f70beda4480ecb2eebef8426, type: 2}
   - id: 2
     prefab: {fileID: 1251326520002480, guid: d0f457cabd782ef42921812aee1fae34, type: 2}
   - id: 2
     prefab: {fileID: 1314576548914548, guid: 518c24507613d1240a1e00665d40167a, type: 2}
+  - id: 3
+    prefab: {fileID: 1121531966349906, guid: b5741d0b684a9934bab2932f62c22e01, type: 2}
+  - id: 3
+    prefab: {fileID: 1780864171241132, guid: 53902ec85506acc4298b4a90f38eeeb1, type: 2}
