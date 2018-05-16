@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ru.lifanoff.Player {
 
@@ -51,15 +49,17 @@ namespace ru.lifanoff.Player {
         }
 
         void Update() {
-            isGrounded = IsGrounded();
-            isRunning = Input.GetButton(Unchangeable.RUN_INPUT);
-            currentSpeed = isRunning ? speedRunning : speedWalking;
+            if (PlayerManager.Instance.canMoving) {
+                isGrounded = IsGrounded();
+                isRunning = Input.GetButton(Unchangeable.RUN_INPUT);
+                currentSpeed = isRunning ? speedRunning : speedWalking;
 
-            PlayerMove();
-            PlayerJump();
-            PlayerRotation();
+                PlayerMove();
+                PlayerJump();
+                PlayerRotation();
 
-            characterController.Move(currentMovement * Time.deltaTime);
+                characterController.Move(currentMovement * Time.deltaTime);
+            }
         }
         #endregion
 

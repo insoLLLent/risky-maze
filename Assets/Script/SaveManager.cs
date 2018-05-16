@@ -38,7 +38,7 @@ namespace ru.lifanoff {
 
         #region Сохраняемые данные
         /// <summary>Ссылка на единственный экземпляр класса OptionsManager</summary>
-        private OptionsManager optionsManager = OptionsManager.Instance;
+        public OptionsManager optionsManager { get; private set; } = OptionsManager.Instance;
         #endregion
 
 
@@ -92,6 +92,14 @@ namespace ru.lifanoff {
                         optionsManager.controlOptions.keyButtons.Add(kn, oldSaver.optionsManager.controlOptions.keyButtons[kn]);
                     }
                 }
+            } catch (Exception) { }
+
+            try {
+                optionsManager.controlOptions.mouseSensitivityX = oldSaver.optionsManager.controlOptions.mouseSensitivityX;
+            } catch (Exception) { }
+
+            try {
+                optionsManager.controlOptions.mouseSensitivityY = oldSaver.optionsManager.controlOptions.mouseSensitivityY;
             } catch (Exception) { }
 
             try {

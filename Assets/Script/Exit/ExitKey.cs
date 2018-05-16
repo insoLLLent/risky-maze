@@ -9,7 +9,7 @@ namespace ru.lifanoff.Exit {
     /// </summary>
     public class ExitKey : MonoBehaviour, IUsable {
         public void Use() {
-            GameController.Instance.playerHasKey = true;
+            PlayerManager.Instance.hasExitKey = true;
             Destroy(gameObject);
         }
     }//class

@@ -26,8 +26,16 @@ namespace ru.lifanoff.Player {
 
 
         #region Unity events
-        void LateUpdate() =>
-            SimpleMouseLook();
+        void Start() {
+            horizontalSensitivity = SaveManager.Instance.optionsManager.controlOptions.mouseSensitivityX;
+            verticalSensitivity = SaveManager.Instance.optionsManager.controlOptions.mouseSensitivityY;
+        }
+
+        void LateUpdate() {
+            if (PlayerManager.Instance.canMoving) {
+                SimpleMouseLook();
+            }
+        }
         #endregion
 
 

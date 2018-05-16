@@ -5,10 +5,13 @@ using UnityEngine;
 namespace ru.lifanoff.Options {
 
     /// <summary>
-    /// Класс для настроек клавиш управления
+    /// Класс для настроек управления
     /// </summary>
     [Serializable]
     public class ControlOptions {
+        public float mouseSensitivityX = 1.5f;
+        public float mouseSensitivityY = 1.5f;
+
         public Dictionary<KeyName, KeyCode> keyButtons = new Dictionary<KeyName, KeyCode> {
             { KeyName.UP, KeyCode.W },
             { KeyName.DOWN, KeyCode.S },

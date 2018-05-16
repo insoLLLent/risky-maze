@@ -29,6 +29,8 @@ namespace ru.lifanoff.Options {
         [SerializeField] private Slider musicSlider;
 
         [Header("Объекты мз панели ControlPanel для сериализации")]
+        [SerializeField] private Slider mouseSensitivityX;
+        [SerializeField] private Slider mouseSensitivityY;
         [SerializeField] private Button upKeyButton;
         [SerializeField] private Button downKeyButton;
         [SerializeField] private Button leftKeyButton;
@@ -148,6 +150,9 @@ namespace ru.lifanoff.Options {
 
             musicSlider.value = optionsInstance.musicOptions.musicValue;
 
+            mouseSensitivityX.value = optionsInstance.controlOptions.mouseSensitivityX;
+            mouseSensitivityY.value = optionsInstance.controlOptions.mouseSensitivityY;
+
             /* Обновить названия клавиш в кнопках */
             upKeyButton.GetComponentInChildren<Text>().text = optionsInstance.controlOptions.keyButtons[KeyName.UP].ToString();
             downKeyButton.GetComponentInChildren<Text>().text = optionsInstance.controlOptions.keyButtons[KeyName.DOWN].ToString();
@@ -174,6 +179,9 @@ namespace ru.lifanoff.Options {
             optionsInstance.graphicsOptions.vSync = vSyncDropdown.value;
 
             optionsInstance.musicOptions.musicValue = musicSlider.value;
+
+            optionsInstance.controlOptions.mouseSensitivityX = mouseSensitivityX.value;
+            optionsInstance.controlOptions.mouseSensitivityY = mouseSensitivityY.value;
 
             saveInstance.Save();
         }

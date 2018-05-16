@@ -10,7 +10,7 @@ namespace ru.lifanoff.Exit {
     public class ExitDoorPortal : MonoBehaviour, IUsable {
 
         public void Use() {
-            if (GameController.Instance.playerHasKey) {
+            if (PlayerManager.Instance.hasExitKey) {
                 GameController.Instance.GoToNextScene(Unchangeable.RESULT_SCENE_NAME);
             }
         }

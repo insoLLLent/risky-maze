@@ -11,12 +11,10 @@ namespace ru.lifanoff.Maze {
         private float chunkSize;
 
         /// <summary>Минимальный размер лабиринта</summary>
-        private const int MIN_SIZE_MAZE = 10;
+        private const int MIN_SIZE_MAZE = 7;
         /// <summary>Максимальный размер лабиринта</summary>
-        private const int MAX_SIZE_MAZE = 15;
+        private const int MAX_SIZE_MAZE = 12;
 
-        /// <summary>Игровой контроллер</summary>
-        private GameController gameController;
         /// <summary>Объект игрока на сцене</summary>
         private GameObject currentPlayer;
         /// <summary>Сгенерированный лабиринт</summary>
@@ -42,8 +40,8 @@ namespace ru.lifanoff.Maze {
 
             currentPlayer = SecondaryFunctions.GetPlayer();
 
-            gameController = GameController.Instance;
-            gameController.playerHasKey = false;
+            PlayerManager.Instance.hasExitKey = false;
+            PlayerManager.Instance.canMoving = true;
 
             PlacePrefabsOnScene();
 
