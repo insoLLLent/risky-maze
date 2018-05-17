@@ -13,6 +13,9 @@ namespace ru.lifanoff.Player {
     /// </summary>
     [RequireComponent(typeof(Camera))]
     public class MiniMapCamera : MonoBehaviour {
+        /// <summary>Объем просмотра ортогональной камеры по-умолчанию</summary>
+        private const float DEFAULT_ORTHOGRAPHIC_SIZE = 10f;
+
 
         /// <summary>Текущая позиция камеры</summary>
         private Vector3 currentCameraPosition = Vector3.zero;
@@ -27,9 +30,13 @@ namespace ru.lifanoff.Player {
         /// <summary>Объект игрока</summary>
         private GameObject currentPlayer;
 
+        /// <summary>Камера мини-карты</summary>
+        private Camera miniMapCamera;
+
 
         #region Unity events
         void Start() {
+            InitCamera();
             currentPlayer = SecondaryFunctions.GetPlayer();
             currentCameraRotation.x = rotX;
         }
@@ -37,13 +44,23 @@ namespace ru.lifanoff.Player {
         void Update() {
             UpdateCameraPosition();
             UpdateCameraRotation();
+            UpdateOrthographicSize();
         }
         #endregion
+
+
+        /// <summary>Настройка начальных значений камеры для мини-карты</summary>
+        private void InitCamera() {
+            miniMapCamera = GetComponent<Camera>();
+            miniMapCamera.orthographic = true;
+            miniMapCamera.orthographicSize = DEFAULT_ORTHOGRAPHIC_SIZE;
+            miniMapCamera.farClipPlane = 20f;
+        }
 
         /// <summary>Обновить позицию камеры</summary>
         private void UpdateCameraPosition() {
             currentCameraPosition.x = currentPlayer.transform.position.x;
-            currentCameraPosition.y = currentPlayer.transform.position.x + posY;
+            currentCameraPosition.y = currentPlayer.transform.position.y + posY;
             currentCameraPosition.z = currentPlayer.transform.position.z;
             transform.position = currentCameraPosition;
         }
@@ -53,6 +70,15 @@ namespace ru.lifanoff.Player {
             currentCameraRotation.y = currentPlayer.transform.eulerAngles.y;
             currentCameraRotation.z = currentPlayer.transform.eulerAngles.z;
             transform.eulerAngles = currentCameraRotation;
+        }
+
+        /// <summary>
+        /// Обновить объем просмотра ортогональной камеры, 
+        /// в зависимости от позоции игрока по оси Y
+        /// </summary>
+        private void UpdateOrthographicSize() {
+            float additional = currentPlayer.transform.position.y * 2f;
+            miniMapCamera.orthographicSize = DEFAULT_ORTHOGRAPHIC_SIZE + additional;
         }
     }//class
 }//namespace
