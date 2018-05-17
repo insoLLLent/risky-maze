@@ -8,8 +8,8 @@ namespace ru.lifanoff.Options {
     [Serializable]
     public class GraphicsOptions {
         public bool isFullscreen = true;
-        public int resolution = 2;
-        public int textureQuality = 2;
+        public int resolution = 0;
+        public int textureQuality = 1;
         public int antialiasing = 0;
         public int vSync = 0;
     }//class
