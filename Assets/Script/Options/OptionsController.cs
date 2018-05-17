@@ -148,7 +148,7 @@ namespace ru.lifanoff.Options {
             antialiasingDropdown.value = optionsInstance.graphicsOptions.antialiasing;
             vSyncDropdown.value = optionsInstance.graphicsOptions.vSync;
 
-            musicSlider.value = optionsInstance.musicOptions.musicValue;
+            musicSlider.value = optionsInstance.musicOptions.musicVolume;
 
             mouseSensitivityX.value = optionsInstance.controlOptions.mouseSensitivityX;
             mouseSensitivityY.value = optionsInstance.controlOptions.mouseSensitivityY;
@@ -178,7 +178,7 @@ namespace ru.lifanoff.Options {
             optionsInstance.graphicsOptions.antialiasing = antialiasingDropdown.value;
             optionsInstance.graphicsOptions.vSync = vSyncDropdown.value;
 
-            optionsInstance.musicOptions.musicValue = musicSlider.value;
+            optionsInstance.musicOptions.musicVolume = musicSlider.value;
 
             optionsInstance.controlOptions.mouseSensitivityX = mouseSensitivityX.value;
             optionsInstance.controlOptions.mouseSensitivityY = mouseSensitivityY.value;
@@ -191,13 +191,17 @@ namespace ru.lifanoff.Options {
             Screen.fullScreen = optionsInstance.graphicsOptions.isFullscreen;
             Resolution currentResolution = resolutions[optionsInstance.graphicsOptions.resolution];
             Screen.SetResolution(currentResolution.width, currentResolution.height, optionsInstance.graphicsOptions.isFullscreen);
+
+            QualitySettings.vSyncCount = optionsInstance.graphicsOptions.vSync;
             QualitySettings.masterTextureLimit = optionsInstance.graphicsOptions.textureQuality;
+
             /* Параметр optionsInstance.graphicsOptions.antialiasing сохраняет не само значение antialiasing,
              * а текущую выбранную позицию в списке всех возможных вариантов antialiasing.
              * Поэтому, чтобы получить реальное значение для QualitySettings.antiAliasing,
              * происходит возведение двойки в степень optionsInstance.graphicsOptions.antialiasing */
             QualitySettings.antiAliasing = (int)Mathf.Pow(2, optionsInstance.graphicsOptions.antialiasing);
-            QualitySettings.vSyncCount = optionsInstance.graphicsOptions.vSync;
+
+            SoundController.Instance.ChangeVolume(optionsInstance.musicOptions.musicVolume);
         }
 
     }//class

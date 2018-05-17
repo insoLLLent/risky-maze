@@ -18,6 +18,7 @@ namespace ru.lifanoff {
         public const string CAMERA_PLAYER_TAG = "PlayerCamera";
         public const string PLAYER_HUD_TAG = "PlayerHUD";
         public const string GAME_CONTROLLER_TAG = "GameController";
+        public const string SOUND_CONTROLLER_TAG = "SoundController";
         public const string MAZE_TAG = "Maze";
         #endregion
 
@@ -27,7 +28,7 @@ namespace ru.lifanoff {
         public const string UI_LAYER = "UI";
         public const string DRAW_ALWAYS_LAYER = "Wall";
         #endregion
-        
+
         #region Player
         public static float DISTANCE_PLAYER_RAYCAST = 2.05f;
         #endregion

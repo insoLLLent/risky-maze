@@ -28,7 +28,7 @@ namespace ru.lifanoff {
             // то присвоить sceneName название предыдущей сцены, с которой попали в сцену PreLoader.
             if (string.IsNullOrWhiteSpace(sceneName)) {
                 if (!SceneInformation.ActiveNames.Contains(sceneName)) {
-                    sceneName = gameController.prevSceneName;
+                    sceneName = gameController.currentSceneName;
                 }
             }
 

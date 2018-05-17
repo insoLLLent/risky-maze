@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ru.lifanoff {
@@ -27,24 +24,13 @@ namespace ru.lifanoff {
 
 
         #region Названия предыдущей и следующей сцены для сцены Loader
-        /// <summary>Название предыдущей сцены относительно сцены <seealso cref="PRELOADER_SCENE_NAME"/></summary>
-        private string _prevSceneName;
-        /// <summary>Название предыдущей сцены относительно сцены <seealso cref="PRELOADER_SCENE_NAME"/></summary>
-        public string prevSceneName {
-            get { return _prevSceneName; }
-            set { _prevSceneName = value; }
-        }
-
-        /// <summary>Название следующей сцены относительно сцены <seealso cref="PRELOADER_SCENE_NAME"/></summary>
-        private string _nextSceneName;
-        /// <summary>Название следующей сцены относительно сцены <seealso cref="PRELOADER_SCENE_NAME"/></summary>
-        public string nextSceneName {
-            get { return _nextSceneName; }
-            set { _nextSceneName = value; }
-        }
-
         /// <summary>Сцена PreLoader</summary>
         private const string PRELOADER_SCENE_NAME = Unchangeable.PRELOADER_SCENE_NAME;
+
+        /// <summary>Название текущей сцены. Также, это будет предыдущая сцена относительно сцены <seealso cref="PRELOADER_SCENE_NAME"/></summary>
+        [HideInInspector] public string currentSceneName;
+        /// <summary>Название следующей сцены относительно сцены <seealso cref="PRELOADER_SCENE_NAME"/></summary>
+        [HideInInspector] public string nextSceneName;
         #endregion
 
 
@@ -65,10 +51,10 @@ namespace ru.lifanoff {
 
         /// <summary>Инициализация специфических настроек</summary>
         private void Initialize() {
-            _prevSceneName = SceneInformation.GetCurrentSceneName();
+            currentSceneName = SceneInformation.GetCurrentSceneName();
 
             // Показать или скрыть курсор на определенных сценах
-            if (_prevSceneName == Unchangeable.PRELOADER_SCENE_NAME || _prevSceneName == Unchangeable.MAIN_MENU_SCENE_NAME) {
+            if (currentSceneName == Unchangeable.PRELOADER_SCENE_NAME || currentSceneName == Unchangeable.MAIN_MENU_SCENE_NAME) {
                 instance.cursorController.CursorIsHide = false;
             } else {
                 instance.cursorController.CursorIsHide = true;
@@ -78,8 +64,8 @@ namespace ru.lifanoff {
         /// <summary>Переключение на другую сцену</summary>
         /// <param name="nextScene">Сцена, на которую переключаемся</param>
         public void GoToNextScene(string nextScene) {
-            _prevSceneName = SceneInformation.GetCurrentSceneName();
-            _nextSceneName = nextScene;
+            currentSceneName = SceneInformation.GetCurrentSceneName();
+            nextSceneName = nextScene;
             SceneManager.LoadScene(PRELOADER_SCENE_NAME);
         }
     }//class

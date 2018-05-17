@@ -54,9 +54,21 @@ namespace ru.lifanoff.Player {
                 isRunning = Input.GetButton(Unchangeable.RUN_INPUT);
                 currentSpeed = isRunning ? speedRunning : speedWalking;
 
+                if (!isJumping) {
+                    if (isRunning) {
+                        SoundController.Instance.PlayRuningPlayer();
+                    } else {
+                        SoundController.Instance.PlayWalkingPlayer();
+                    }
+                }
+
                 PlayerMove();
                 PlayerJump();
                 PlayerRotation();
+
+                if (currentMovement.x == 0 && currentMovement.z == 0) {
+                    SoundController.Instance.StopPlayerAudioSource();
+                }
 
                 characterController.Move(currentMovement * Time.deltaTime);
             }
@@ -88,12 +100,14 @@ namespace ru.lifanoff.Player {
                 if (isGrounded) {
                     isJumping = false;
                     currentMovement.y = 0f;
+                    SoundController.Instance.PlayEndJumpPlayer();
                 }//fi
             } else {
                 if (Input.GetButton(Unchangeable.JUMP_INPUT)) {
                     if (isGrounded) {
                         currentMovement.y = Mathf.Sqrt(-4f * gravity * jumpHeight);
                         isJumping = true;
+                        SoundController.Instance.PlayStartJumpPlayer(40);
                     }//fi
                 }//fi
             }//fi isJumping

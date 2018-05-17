@@ -7,6 +7,6 @@ namespace ru.lifanoff.Options {
     /// </summary>
     [Serializable]
     public class MusicOptions {
-        public float musicValue = .7f;
+        public float musicVolume = .7f;
     }//class
 }//namespace

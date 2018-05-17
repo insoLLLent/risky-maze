@@ -123,7 +123,7 @@ namespace ru.lifanoff {
             } catch (Exception) { }
 
             try {
-                optionsManager.musicOptions.musicValue = oldSaver.optionsManager.musicOptions.musicValue;
+                optionsManager.musicOptions.musicVolume = oldSaver.optionsManager.musicOptions.musicVolume;
             } catch (Exception) { }
 
         }

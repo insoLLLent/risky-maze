@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ru.lifanoff {
 
@@ -13,15 +7,209 @@ namespace ru.lifanoff {
     /// </summary>
     public class SoundController : MonoBehaviour {
 
-        #region Unity events
-        void Start() {
+        [Header("Звуки для сцены Game")]
+        [Tooltip("Фоновый звук ветра")]
+        [SerializeField] private AudioClip gameBackgroundAmbience;
+        [Tooltip("Набор фоновой музыки")]
+        [SerializeField] private AudioClip[] gameBackgroundMusics;
 
+        [Header("Озвучка игрока")]
+        [Tooltip("Озвучка походки игрока")]
+        [SerializeField] private AudioClip gamePlayerWalkingSound;
+        [Tooltip("Озвучка бега игрока")]
+        [SerializeField] private AudioClip gamePlayerRunningSound;
+
+        [Tooltip("Звук начала прыжка игрока")]
+        [SerializeField] private AudioClip gamePlayerStartJumpSound;
+        [Tooltip("Набор звуков окончания прыжка игрока")]
+        [SerializeField] private AudioClip[] gamePlayerEndJumpSounds;
+
+        [Header("Звуки для остальных сцен")]
+        [Tooltip("Фоновая музыка")]
+        [SerializeField] private AudioClip commonBackgroundMusic;
+
+
+        /// <summary>Единственный экземпляр класса <seealso cref="SoundController"/></summary>
+        private static SoundController instance;
+        /// <summary>Единственный экземпляр класса <seealso cref="SoundController"/></summary>
+        public static SoundController Instance {
+            get { return instance; }
+        }
+
+        private SoundController() { }
+
+
+        #region Источники звука
+        /// <summary>Источник звука для коротких звуков</summary>
+        private AudioSource oneShotAudioSource;
+        /// <summary>Источник звука для игрока</summary>
+        private AudioSource playerAudioSource;
+        /// <summary>Источник звука для музыки</summary>
+        private AudioSource musicAudioSource;
+        /// <summary>Источник звука для фонового шума</summary>
+        private AudioSource ambianceAudioSource;
+        #endregion
+
+        /// <summary>Текущая фоновая музыка в игре</summary>
+        private AudioClip currentGameMusic;
+
+        #region Unity events
+        void Awake() {
+            if (instance == null) {
+                AddAudioSources();
+                instance = this;
+            } else if (instance != this) {
+                Destroy(gameObject);
+            }
+
+            DontDestroyOnLoad(gameObject);
+
+            instance.InitSettings();
         }
 
         void Update() {
+            if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
+                if (instance.musicAudioSource.clip == commonBackgroundMusic) {
+                    currentGameMusic = gameBackgroundMusics[Random.Range(0, gameBackgroundMusics.Length)];
+                    instance.StopMusic();
+                    instance.PlayMusic(currentGameMusic);
 
+                    instance.StopAmbiance();
+                    instance.PlayAmbiance();
+                }
+            } else {
+                if (instance.musicAudioSource.clip != commonBackgroundMusic) {
+                    instance.StopAmbiance();
+                    instance.StopMusic();
+                    instance.PlayMusic(commonBackgroundMusic);
+                }
+            }
         }
         #endregion
+
+        /// <summary>Добавить в текущий игровой объект источники звуков</summary>
+        private void AddAudioSources() {
+            oneShotAudioSource = gameObject.AddComponent<AudioSource>();
+            playerAudioSource = gameObject.AddComponent<AudioSource>();
+            musicAudioSource = gameObject.AddComponent<AudioSource>();
+            ambianceAudioSource = gameObject.AddComponent<AudioSource>();
+
+            oneShotAudioSource.playOnAwake = false;
+            playerAudioSource.playOnAwake = false;
+            musicAudioSource.playOnAwake = false;
+            ambianceAudioSource.playOnAwake = false;
+
+            oneShotAudioSource.loop = false;
+            playerAudioSource.loop = true;
+            musicAudioSource.loop = true;
+            ambianceAudioSource.loop = true;
+
+            oneShotAudioSource.Stop();
+            playerAudioSource.Stop();
+            musicAudioSource.Stop();
+            ambianceAudioSource.Stop();
+        }
+
+
+        /// <summary>Специфические настройки</summary>
+        private void InitSettings() {
+            ChangeVolume(SaveManager.Instance.optionsManager.musicOptions.musicVolume);
+        }
+
+
+        /// <summary>Изменить громкость звукового сопровождения</summary>
+        public void ChangeVolume(float volume) {
+            volume = Mathf.Clamp01(volume);
+
+            oneShotAudioSource.volume = volume;
+            playerAudioSource.volume = volume;
+            musicAudioSource.volume = volume / 2f;
+            ambianceAudioSource.volume = volume;
+        }
+
+
+        #region Player Sounds
+        /// <summary>Проиграить звук окончания прыжка игрока</summary>
+        /// <param name="chance">Вероятность проигрывания звука [0, 100]</param>
+        public void PlayStartJumpPlayer(int chance = 100) {
+            StopPlayerAudioSource();
+
+            if (Random.Range(0, 100) < Mathf.Clamp(chance, 0, 100)) {
+                oneShotAudioSource.PlayOneShot(gamePlayerStartJumpSound);
+            }
+        }
+
+        /// <summary>Проиграить звук прыжка игрока</summary>
+        public void PlayEndJumpPlayer() {
+            AudioClip audioClip = null;
+            while (audioClip == null) {
+                audioClip = gamePlayerEndJumpSounds[Random.Range(0, gamePlayerEndJumpSounds.Length)];
+            }
+
+            oneShotAudioSource.PlayOneShot(audioClip);
+        }
+
+        /// <summary>Проиграить звук идущего игрока</summary>
+        public void PlayWalkingPlayer() {
+            if (playerAudioSource.clip != gamePlayerWalkingSound) {
+                StopPlayerAudioSource();
+                playerAudioSource.clip = gamePlayerWalkingSound;
+                playerAudioSource.Play();
+            }
+        }
+
+        /// <summary>Проиграить звук бега игрока</summary>
+        public void PlayRuningPlayer() {
+            if (playerAudioSource.clip != gamePlayerRunningSound) {
+                StopPlayerAudioSource();
+                playerAudioSource.clip = gamePlayerRunningSound;
+                playerAudioSource.Play();
+            }
+        }
+
+        public void StopPlayerAudioSource() {
+            if (playerAudioSource.isPlaying) {
+                playerAudioSource.clip = null;
+                playerAudioSource.Stop();
+            }
+        }
+        #endregion Player Sounds
+
+
+        #region Music
+        /// <summary>Включить фоновую музыку</summary>
+        /// <param name="audioClip">Проигрываемая фоновая музыка</param>
+        public void PlayMusic(AudioClip audioClip) {
+            musicAudioSource.clip = audioClip;
+            musicAudioSource.Play();
+        }
+
+        /// <summary>Остановить музыку</summary>
+        public void StopMusic() {
+            if (musicAudioSource.isPlaying) {
+                musicAudioSource.clip = null;
+                musicAudioSource.Stop();
+            }
+        }
+        #endregion Music
+
+
+        #region Ambiance
+        /// <summary>Включить фоновую музыку</summary>
+        /// <param name="audioClip">Проигрываемая фоновая музыка</param>
+        public void PlayAmbiance() {
+            ambianceAudioSource.clip = gameBackgroundAmbience;
+            ambianceAudioSource.Play();
+        }
+
+        /// <summary>Остановить музыку</summary>
+        public void StopAmbiance() {
+            if (ambianceAudioSource.isPlaying) {
+                ambianceAudioSource.clip = null;
+                ambianceAudioSource.Stop();
+            }
+        }
+        #endregion Ambiance
 
     }//class
 }//namespace

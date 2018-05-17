@@ -3,7 +3,7 @@
 namespace ru.lifanoff.Options {
 
     /// <summary>
-    /// Класс-синглтон, который хранит настройки для класса <see cref="OptionsController"/>
+    /// Класс-синглтон, который хранит настройки
     /// </summary>
     [Serializable]
     public class OptionsManager {
