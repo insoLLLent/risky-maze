@@ -75,7 +75,6 @@ namespace ru.lifanoff.Options {
 
 
         #region Функции, которые запускаются при нажатии кнопок в Difficult
-
         /// <summary>Реакция на нажатие кнопки Back в меню выбора сложности игры</summary>
         public void DifficultBackButton() {
             mainMenuCanvas.SetActive(true);
@@ -234,7 +233,7 @@ namespace ru.lifanoff.Options {
             /* Параметр optionsInstance.graphicsOptions.antialiasing сохраняет не само значение antialiasing,
              * а текущую выбранную позицию в списке всех возможных вариантов antialiasing.
              * Поэтому, чтобы получить реальное значение для QualitySettings.antiAliasing,
-             * происходит возведение двойки в степень optionsInstance.graphicsOptions.antialiasing */
+             * нужно возвести двойку в степень optionsInstance.graphicsOptions.antialiasing */
             QualitySettings.antiAliasing = (int)Mathf.Pow(2, optionsInstance.graphicsOptions.antialiasing);
 
             SoundController.Instance.ChangeVolume(optionsInstance.musicOptions.musicVolume);

@@ -30,11 +30,7 @@ namespace ru.lifanoff {
 
 
         /// <summary>Единственный экземпляр класса <seealso cref="SoundController"/></summary>
-        private static SoundController instance;
-        /// <summary>Единственный экземпляр класса <seealso cref="SoundController"/></summary>
-        public static SoundController Instance {
-            get { return instance; }
-        }
+        public static SoundController Instance { get; private set; }
 
         private SoundController() { }
 
@@ -51,37 +47,37 @@ namespace ru.lifanoff {
         #endregion
 
         /// <summary>Текущая фоновая музыка в игре</summary>
-        private AudioClip currentGameMusic;
+        private AudioClip currentBackgroundMusic;
 
         #region Unity events
         void Awake() {
-            if (instance == null) {
+            if (Instance == null) {
                 AddAudioSources();
-                instance = this;
-            } else if (instance != this) {
+                Instance = this;
+            } else if (Instance != this) {
                 Destroy(gameObject);
             }
 
             DontDestroyOnLoad(gameObject);
 
-            instance.InitSettings();
+            Instance.InitSettings();
         }
 
         void Update() {
             if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
-                if (instance.musicAudioSource.clip == commonBackgroundMusic) {
-                    currentGameMusic = gameBackgroundMusics[Random.Range(0, gameBackgroundMusics.Length)];
-                    instance.StopMusic();
-                    instance.PlayMusic(currentGameMusic);
+                if (Instance.musicAudioSource.clip == commonBackgroundMusic) {
+                    currentBackgroundMusic = gameBackgroundMusics[Random.Range(0, gameBackgroundMusics.Length)];
+                    Instance.StopMusic();
+                    Instance.PlayMusic(currentBackgroundMusic);
 
-                    instance.StopAmbiance();
-                    instance.PlayAmbiance();
+                    Instance.StopAmbiance();
+                    Instance.PlayAmbiance();
                 }
             } else {
-                if (instance.musicAudioSource.clip != commonBackgroundMusic) {
-                    instance.StopAmbiance();
-                    instance.StopMusic();
-                    instance.PlayMusic(commonBackgroundMusic);
+                if (Instance.musicAudioSource.clip != commonBackgroundMusic) {
+                    Instance.StopAmbiance();
+                    Instance.StopMusic();
+                    Instance.PlayMusic(commonBackgroundMusic);
                 }
             }
         }

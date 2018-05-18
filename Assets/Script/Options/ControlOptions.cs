@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ru.lifanoff.Options {
@@ -7,7 +6,7 @@ namespace ru.lifanoff.Options {
     /// <summary>
     /// Класс для настроек управления
     /// </summary>
-    [Serializable]
+    [System.Serializable]
     public class ControlOptions {
         public float mouseSensitivityX = 1.5f;
         public float mouseSensitivityY = 1.5f;

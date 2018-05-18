@@ -21,15 +21,11 @@ namespace ru.lifanoff {
         public bool hasExitKey;
 
         /// <summary>Единственный экземпляр класса <seealso cref="PlayerManager"/></summary>
-        private static PlayerManager instance;
-        /// <summary>Единственный экземпляр класса <seealso cref="PlayerManager"/></summary>
-        public static PlayerManager Instance {
-            get { return instance; }
-        }
+        public static PlayerManager Instance { get; private set; }
 
         static PlayerManager() {
-            if (instance == null) {
-                instance = new PlayerManager();
+            if (Instance == null) {
+                Instance = new PlayerManager();
             }
         }
 

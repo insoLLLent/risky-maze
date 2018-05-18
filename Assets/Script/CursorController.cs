@@ -7,15 +7,12 @@ namespace ru.lifanoff {
     /// </summary>
     public class CursorController {
 
-        private static CursorController instance = null;
-        public static CursorController Instance {
-            get { return instance; }
-        }
+        public static CursorController Instance { get; private set; }
 
         static CursorController() {
-            if (instance == null) {
-                instance = new CursorController();
-                instance.CursorIsHide = true;
+            if (Instance == null) {
+                Instance = new CursorController();
+                Instance.CursorIsHide = true;
             }
         }
 

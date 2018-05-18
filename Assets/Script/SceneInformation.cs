@@ -10,15 +10,12 @@ namespace ru.lifanoff {
     public static class SceneInformation {
 
         /// <summary>Список активных сцен в меню "File > BuildSettings"</summary>
-        private static List<string> activeNames = new List<string>();
-        /// <summary>Список активных сцен в меню "File > BuildSettings"</summary>
-        public static List<string> ActiveNames {
-            get {
-                return activeNames;
-            }
-        }
+        public static List<string> ActiveNames { get; private set; }
+
 
         static SceneInformation() {
+            ActiveNames = new List<string>();
+
             MakeActiveNames(); // Сразу назначить в _activeNames назвние всех активных сцен
         }
 
@@ -27,7 +24,7 @@ namespace ru.lifanoff {
             int sceneCount = SceneManager.sceneCountInBuildSettings;
             for (int i = 0; i < sceneCount; i++) {
                 string scenePathName = SceneUtility.GetScenePathByBuildIndex(i);
-                activeNames.Add(Regex.Replace(scenePathName, @"^Assets/(.+)\.unity$", @"$1", RegexOptions.IgnoreCase));
+                ActiveNames.Add(Regex.Replace(scenePathName, @"^Assets/(.+)\.unity$", @"$1", RegexOptions.IgnoreCase));
             }
         }
 

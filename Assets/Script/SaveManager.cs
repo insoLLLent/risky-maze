@@ -11,35 +11,29 @@ namespace ru.lifanoff {
     /// </summary>
     [Serializable]
     public class SaveManager {
-        [NonSerialized]
-        public static string FILEPATH = Path.GetFullPath(@"./saves/CourseworkSave.bin"); // Полный путь к сейв-файлу
-        [NonSerialized]
-        public static string FILEDIR = Path.GetDirectoryName(FILEPATH); // Директория в который расположен сейв-файл
-        [NonSerialized]
-        public static string FILENAME = Path.GetFileName(FILEPATH); // Только имя и расширение сейв-файл
+        /// <summary>Полный путь к сейв-файлу</summary>
+        [NonSerialized] public static string FILEPATH = Path.GetFullPath(@"./saves/CourseworkSave.bin");
+        /// <summary>Директория в который расположен сейв-файл</summary>
+        [NonSerialized] public static string FILEDIR = Path.GetDirectoryName(FILEPATH);
+        /// <summary>Только имя и расширение сейв-файл</summary>
+        [NonSerialized] public static string FILENAME = Path.GetFileName(FILEPATH);
 
         /// <summary>Единственный экземпляр класса <seealso cref="SaveManager"/></summary>
-        private static SaveManager instance;
-        /// <summary>Единственный экземпляр класса <seealso cref="SaveManager"/></summary>
-        public static SaveManager Instance {
-            get { return instance; }
-        }
+        public static SaveManager Instance { get; private set; }
 
         static SaveManager() {
-            if (instance == null) {
-                instance = new SaveManager();
+            if (Instance == null) {
+                Instance = new SaveManager();
             }
 
-            instance.Load();
+            Instance.Load();
         }
 
         private SaveManager() { }
 
 
-        #region Сохраняемые данные
         /// <summary>Ссылка на единственный экземпляр класса OptionsManager</summary>
         public OptionsManager optionsManager { get; private set; } = OptionsManager.Instance;
-        #endregion
 
 
         /// <summary>
@@ -52,7 +46,7 @@ namespace ru.lifanoff {
 
             using (FileStream fs = new FileStream(FILEPATH, FileMode.OpenOrCreate)) {
                 BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(fs, instance);
+                bf.Serialize(fs, Instance);
             }
         }
 
@@ -94,38 +88,16 @@ namespace ru.lifanoff {
                 }
             } catch (Exception) { }
 
-            try {
-                optionsManager.controlOptions.mouseSensitivityX = oldSaver.optionsManager.controlOptions.mouseSensitivityX;
-            } catch (Exception) { }
+            optionsManager.controlOptions.mouseSensitivityX = oldSaver.optionsManager.controlOptions.mouseSensitivityX;
+            optionsManager.controlOptions.mouseSensitivityY = oldSaver.optionsManager.controlOptions.mouseSensitivityY;
 
-            try {
-                optionsManager.controlOptions.mouseSensitivityY = oldSaver.optionsManager.controlOptions.mouseSensitivityY;
-            } catch (Exception) { }
+            optionsManager.graphicsOptions.antialiasing = oldSaver.optionsManager.graphicsOptions.antialiasing;
+            optionsManager.graphicsOptions.isFullscreen = oldSaver.optionsManager.graphicsOptions.isFullscreen;
+            optionsManager.graphicsOptions.resolution = oldSaver.optionsManager.graphicsOptions.resolution;
+            optionsManager.graphicsOptions.textureQuality = oldSaver.optionsManager.graphicsOptions.textureQuality;
+            optionsManager.graphicsOptions.vSync = oldSaver.optionsManager.graphicsOptions.vSync;
 
-            try {
-                optionsManager.graphicsOptions.antialiasing = oldSaver.optionsManager.graphicsOptions.antialiasing;
-            } catch (Exception) { }
-
-            try {
-                optionsManager.graphicsOptions.isFullscreen = oldSaver.optionsManager.graphicsOptions.isFullscreen;
-            } catch (Exception) { }
-
-            try {
-                optionsManager.graphicsOptions.resolution = oldSaver.optionsManager.graphicsOptions.resolution;
-            } catch (Exception) { }
-
-            try {
-                optionsManager.graphicsOptions.textureQuality = oldSaver.optionsManager.graphicsOptions.textureQuality;
-            } catch (Exception) { }
-
-            try {
-                optionsManager.graphicsOptions.vSync = oldSaver.optionsManager.graphicsOptions.vSync;
-            } catch (Exception) { }
-
-            try {
-                optionsManager.musicOptions.musicVolume = oldSaver.optionsManager.musicOptions.musicVolume;
-            } catch (Exception) { }
-
+            optionsManager.musicOptions.musicVolume = oldSaver.optionsManager.musicOptions.musicVolume;
         }
 
     }//class

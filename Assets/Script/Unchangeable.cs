@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ru.lifanoff {
 
     /// <summary>
-    /// Статичный класс, содержащий общие константы
+    /// Статичный класс, содержащий константы
     /// </summary>
     public static class Unchangeable {
 

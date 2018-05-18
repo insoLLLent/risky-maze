@@ -6,17 +6,12 @@ namespace ru.lifanoff {
 
     /// <summary>
     /// Класс-синглтон, который хранит и передает данные между сценами.
-    /// Этот класс прикреплен к специальному объекту на сцене, который никогда не удаляется.
-    /// Специальный объект, в свою очередь, входит в состав префаба, который размещается на каждой сцене.
+    /// Этот класс прикреплен к специальному объекту на сцене, который не удаляется при смене сцены.
     /// </summary>
     public class GameController : MonoBehaviour {
 
         /// <summary>Единственный экземпляр класса <seealso cref="GameController"/></summary>
-        private static GameController instance;
-        /// <summary>Единственный экземпляр класса <seealso cref="GameController"/></summary>
-        public static GameController Instance {
-            get { return instance; }
-        }
+        public static GameController Instance { get; private set; }
 
         static GameController() {
             InitDifficultMode();
@@ -73,16 +68,16 @@ namespace ru.lifanoff {
 
         #region Unity Events
         void Awake() {
-            if (instance == null) {
+            if (Instance == null) {
                 cursorController = CursorController.Instance;
-                instance = this;
-            } else if (instance != this) {
+                Instance = this;
+            } else if (Instance != this) {
                 Destroy(gameObject);
             }
 
             DontDestroyOnLoad(gameObject);
 
-            instance.Initialize();
+            Instance.Initialize();
         }
         #endregion
 
@@ -92,9 +87,9 @@ namespace ru.lifanoff {
 
             // Показать или скрыть курсор на определенных сценах
             if (currentSceneName == Unchangeable.PRELOADER_SCENE_NAME || currentSceneName == Unchangeable.MAIN_MENU_SCENE_NAME) {
-                instance.cursorController.CursorIsHide = false;
+                Instance.cursorController.CursorIsHide = false;
             } else {
-                instance.cursorController.CursorIsHide = true;
+                Instance.cursorController.CursorIsHide = true;
             }
         }
 

@@ -20,7 +20,7 @@ namespace ru.lifanoff.Maze {
         /// <summary></summary>
         private MazePrefabContainer mazePrefabContainer;
 
-        #region Unity Engine
+        #region Unity Events
         void Start() {
             // Сгенерировать лабиринт случайного размера
             int minSizeMaze = GameController.Instance.getMinSizeMaze;

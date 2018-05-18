@@ -1,23 +1,17 @@
-﻿using System;
-
-namespace ru.lifanoff.Options {
+﻿namespace ru.lifanoff.Options {
 
     /// <summary>
     /// Класс-синглтон, который хранит настройки
     /// </summary>
-    [Serializable]
+    [System.Serializable]
     public class OptionsManager {
 
         /// <summary>Единственный экземпляр класса <seealso cref="OptionsManager"/></summary>
-        private static OptionsManager instance;
-        /// <summary>Единственный экземпляр класса <seealso cref="OptionsManager"/></summary>
-        public static OptionsManager Instance {
-            get { return instance; }
-        }
+        public static OptionsManager Instance { get; private set; }
 
         static OptionsManager() {
-            if (instance == null) {
-                instance = new OptionsManager();
+            if (Instance == null) {
+                Instance = new OptionsManager();
             }
         }
 
@@ -26,24 +20,13 @@ namespace ru.lifanoff.Options {
 
         #region Menu Options
         /// <summary>Хранилище настроек графики</summary>
-        private GraphicsOptions _graphicsOptions = new GraphicsOptions();
-        /// <summary>Хранилище настроек графики</summary>
-        public GraphicsOptions graphicsOptions {
-            get { return _graphicsOptions; }
-        }
+        public GraphicsOptions graphicsOptions { get; private set; } = new GraphicsOptions();
 
         /// <summary>Хранилище настроек музыки и звуков</summary>
-        private MusicOptions _musicOptions = new MusicOptions();
-        /// <summary>Хранилище настроек музыки и звуков</summary>
-        public MusicOptions musicOptions {
-            get { return _musicOptions; }
-        }
+        public MusicOptions musicOptions { get; private set; } = new MusicOptions();
+
         /// <summary>Хранилище используемых в игре клавиш</summary>
-        private ControlOptions _controlOptions = new ControlOptions();
-        /// <summary>Хранилище используемых в игре клавиш</summary>
-        public ControlOptions controlOptions {
-            get { return _controlOptions; }
-        }
+        public ControlOptions controlOptions { get; private set; } = new ControlOptions();
         #endregion
 
     }//class
