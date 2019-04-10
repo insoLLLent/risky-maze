@@ -10,35 +10,35 @@ namespace ru.lifanoff.Options {
 
         #region Игровые объекты, которые инициализируются в панели Inspector редактора
         [Header("Opitons Menu Layout Panel")]
-        [SerializeField] private GameObject graphicsPanel;
-        [SerializeField] private GameObject musicPanel;
-        [SerializeField] private GameObject controlPanel;
+        [SerializeField] private GameObject graphicsPanel = null;
+        [SerializeField] private GameObject musicPanel = null;
+        [SerializeField] private GameObject controlPanel = null;
 
         [Header("Canvas Panel")]
-        [SerializeField] private GameObject mainMenuCanvas;
-        [SerializeField] private GameObject optionsMenuCanvas;
-        [SerializeField] private GameObject difficultCanvas;
+        [SerializeField] private GameObject mainMenuCanvas = null;
+        [SerializeField] private GameObject optionsMenuCanvas = null;
+        [SerializeField] private GameObject difficultCanvas = null;
 
         [Header("Объекты из панели GraphicsPanel для сериализации")]
-        [SerializeField] private Toggle fullscreenToggle;
-        [SerializeField] private Dropdown resolutionDropdown;
-        [SerializeField] private Dropdown textureDropdown;
-        [SerializeField] private Dropdown antialiasingDropdown;
-        [SerializeField] private Dropdown vSyncDropdown;
+        [SerializeField] private Toggle fullscreenToggle = null;
+        [SerializeField] private Dropdown resolutionDropdown = null;
+        [SerializeField] private Dropdown textureDropdown = null;
+        [SerializeField] private Dropdown antialiasingDropdown = null;
+        [SerializeField] private Dropdown vSyncDropdown = null;
 
         [Header("Объекты из панели MusicPanel для сериализации")]
-        [SerializeField] private Slider musicSlider;
+        [SerializeField] private Slider musicSlider = null;
 
         [Header("Объекты из панели ControlPanel для сериализации")]
-        [SerializeField] private Slider mouseSensitivityX;
-        [SerializeField] private Slider mouseSensitivityY;
-        [SerializeField] private Button upKeyButton;
-        [SerializeField] private Button downKeyButton;
-        [SerializeField] private Button leftKeyButton;
-        [SerializeField] private Button rightKeyButton;
-        [SerializeField] private Button runKeyButton;
-        [SerializeField] private Button jumpKeyButton;
-        [SerializeField] private Button useKeyButton;
+        [SerializeField] private Slider mouseSensitivityX = null;
+        [SerializeField] private Slider mouseSensitivityY = null;
+        [SerializeField] private Button upKeyButton = null;
+        [SerializeField] private Button downKeyButton = null;
+        [SerializeField] private Button leftKeyButton = null;
+        [SerializeField] private Button rightKeyButton = null;
+        [SerializeField] private Button runKeyButton = null;
+        [SerializeField] private Button jumpKeyButton = null;
+        [SerializeField] private Button useKeyButton = null;
         #endregion
 
         /// <summary>Список разрешений экрана</summary>

@@ -15,10 +15,10 @@ namespace ru.lifanoff {
         [Header("Спрайты курсоров")]
 
         [Tooltip("Курсор по-умолчанию")]
-        [SerializeField] private Sprite defaultCrosshair;
+        [SerializeField] private Sprite defaultCrosshair = null;
 
         [Tooltip("Курсор, отображаемый при наведении на что-либо, что можно использовать")]
-        [SerializeField] private Sprite activeCrosshair;
+        [SerializeField] private Sprite activeCrosshair = null;
 
 
         // Интервал запуска проверки для отображения нужного курсора

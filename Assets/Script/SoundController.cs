@@ -9,24 +9,24 @@ namespace ru.lifanoff {
 
         [Header("Звуки для сцены Game")]
         [Tooltip("Фоновый звук ветра")]
-        [SerializeField] private AudioClip gameBackgroundAmbience;
+        [SerializeField] private AudioClip gameBackgroundAmbience = null;
         [Tooltip("Набор фоновой музыки")]
-        [SerializeField] private AudioClip[] gameBackgroundMusics;
+        [SerializeField] private AudioClip[] gameBackgroundMusics = null;
 
         [Header("Озвучка игрока")]
         [Tooltip("Озвучка походки игрока")]
-        [SerializeField] private AudioClip gamePlayerWalkingSound;
+        [SerializeField] private AudioClip gamePlayerWalkingSound = null;
         [Tooltip("Озвучка бега игрока")]
-        [SerializeField] private AudioClip gamePlayerRunningSound;
+        [SerializeField] private AudioClip gamePlayerRunningSound = null;
 
         [Tooltip("Звук начала прыжка игрока")]
-        [SerializeField] private AudioClip gamePlayerStartJumpSound;
+        [SerializeField] private AudioClip gamePlayerStartJumpSound = null;
         [Tooltip("Набор звуков окончания прыжка игрока")]
-        [SerializeField] private AudioClip[] gamePlayerEndJumpSounds;
+        [SerializeField] private AudioClip[] gamePlayerEndJumpSounds = null;
 
         [Header("Звуки для остальных сцен")]
         [Tooltip("Фоновая музыка")]
-        [SerializeField] private AudioClip commonBackgroundMusic;
+        [SerializeField] private AudioClip commonBackgroundMusic = null;
 
 
         /// <summary>Единственный экземпляр класса <seealso cref="SoundController"/></summary>
