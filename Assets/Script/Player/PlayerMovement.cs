@@ -12,8 +12,15 @@ namespace ru.lifanoff.Player {
         private float speedWalking = 3f;
         /// <summary>Скорость бега игрока</summary>
         private float speedRunning = 7f;
+
         /// <summary>Текущая скорость игрока</summary>
         private float currentSpeed = 0f;
+        /// <summary>Текущая скорость игрока</summary>
+        public float CurrentSpeed {
+            get {
+                return currentSpeed;
+            }
+        }
 
         /// <summary>Высота прыжка</summary>
         private float jumpHeight = 1.15f;

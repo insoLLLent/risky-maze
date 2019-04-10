@@ -23,7 +23,6 @@ namespace ru.lifanoff {
         public const string MAZE_TAG = "Maze";
         #endregion
 
-
         #region Layers
         public const string DEFAULT_LAYER = "Default";
         public const string UI_LAYER = "UI";
@@ -31,7 +30,14 @@ namespace ru.lifanoff {
         #endregion
 
         #region Player
-        public static float DISTANCE_PLAYER_RAYCAST = 2.05f;
+        public const float DISTANCE_PLAYER_RAYCAST = 2.05f;
+        public const int DEFAULT_COUNT_PEBBLES = 10;
+        public const float SHOT_FORCE = 195f;
+        #endregion
+
+        #region Objects
+        // Контрольная точка по Y, пересекая которую, объект должен быть перенесен на точку респауна
+        public const float RESPAWN_POSITION_Y = -256f;
         #endregion
 
         #region Scene
@@ -64,6 +70,7 @@ namespace ru.lifanoff {
         public const string ESCAPE_INPUT = CANCEL_INPUT;
         public const string RUN_INPUT = "Run";
         public const string USE_INPUT = "Use";
+        public const string DROP_PEBBLE_INPUT = "DropPebble";
         #endregion
     }
 

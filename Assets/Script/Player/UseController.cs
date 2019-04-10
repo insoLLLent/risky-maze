@@ -10,9 +10,6 @@ namespace ru.lifanoff.Player {
     /// </summary>
     public class UseController : MonoBehaviour {
 
-        [Tooltip("Информация о паузе")]
-        [SerializeField] private PauseController pauseController = null;
-
         #region Данные для камеры
         private Camera cameraPlayer; // Камера игрока
         private Vector2 screenCenter;
@@ -35,7 +32,7 @@ namespace ru.lifanoff.Player {
 
         /// <summary>Реакция на нажатие клавиши "Use"</summary>
         private void PressUse() {
-            if (pauseController != null && pauseController.isPaused) return;
+            if (PauseController.isPaused) return;
 
             if (Input.GetButtonDown(Unchangeable.USE_INPUT)) { // Нажимаем клавишу Use (В данном случае - левая кнопка мыши)
 

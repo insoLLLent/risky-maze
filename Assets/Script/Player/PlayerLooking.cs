@@ -13,9 +13,9 @@ namespace ru.lifanoff.Player {
         private float verticalSensitivity = 2f;
 
         /// <summary>Максимальный угол при повороте камеры вверх</summary>
-        private float maxAngleUp = -55f;
+        private float maxAngleUp = -80f;
         /// <summary>Максимальный угол при повороте камеры вниз</summary>
-        private float maxAngleDown = 60f;
+        private float maxAngleDown = 80f;
 
         /// <summary>Угол, на который надо повернуть камеру по-горизонтали</summary>
         private float horizontalAngle;

@@ -8,7 +8,7 @@ namespace ru.lifanoff {
     public class PauseController : MonoBehaviour {
 
         /// <summary>Находится ли игра в режиме паузы</summary>
-        [HideInInspector] public bool isPaused { get; private set; }
+        [HideInInspector] public static bool isPaused { get; private set; }
         /// <summary>Отображаемая панель во время паузы</summary>
         [SerializeField] private RectTransform pausePanel;
 
