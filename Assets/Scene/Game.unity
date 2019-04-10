@@ -209,6 +209,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114237639332557574, guid: c1c7e28839e69fb42925f281459f36b1,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114226742823223716, guid: c1c7e28839e69fb42925f281459f36b1,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114227598064831170, guid: c1c7e28839e69fb42925f281459f36b1,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634288142790226, guid: c1c7e28839e69fb42925f281459f36b1,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c7e28839e69fb42925f281459f36b1, type: 3}
 --- !u!114 &49619276 stripped
