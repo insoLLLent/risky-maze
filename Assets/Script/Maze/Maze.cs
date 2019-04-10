@@ -31,7 +31,7 @@ namespace ru.lifanoff.Maze {
         void Awake() {
             // Сгенерировать лабиринт случайного размера
             int minSizeMaze = GameController.Instance.getMinSizeMaze;
-            int maxSizeMaze = GameController.Instance.getMinSizeMaze;
+            int maxSizeMaze = GameController.Instance.getMaxSizeMaze;
             int mazeSizeX = rnd.Next(minSizeMaze, maxSizeMaze);
             int mazeSizeY = rnd.Next(minSizeMaze, maxSizeMaze);
             mazeStructure = new MazeGenerate(mazeSizeX, mazeSizeY);
