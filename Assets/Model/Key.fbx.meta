@@ -1,17 +1,14 @@
 fileFormatVersion: 2
-guid: e96113726e015e44a9275a15652de4cf
+guid: c6c87eb5064152942bd4fcec274ed4df
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: MonKey_Mat
+    2100000: Key_Mat
     2300000: //RootNode
     3300000: //RootNode
-    4300000: MonKey
-    7400000: Default Take
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+    4300000: Key
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -71,7 +68,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   importAnimation: 0
