@@ -612,6 +612,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PSDust
       objectReference: {fileID: 0}
+    - target: {fileID: 79161919940600099, guid: 2bc3f2f4bdab12d4f961403b665ce356,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 79161919940600110, guid: 2bc3f2f4bdab12d4f961403b665ce356,
         type: 3}
       propertyPath: m_LocalPosition.x
