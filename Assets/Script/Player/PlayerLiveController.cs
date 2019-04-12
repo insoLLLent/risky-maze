@@ -29,6 +29,8 @@ namespace ru.lifanoff.Player {
             }
         }
 
+        private bool canDamage = true;
+
         #region Unity events
         void Start() {
             UpdatePebbleText();
@@ -60,7 +62,17 @@ namespace ru.lifanoff.Player {
         }
 
         public void DecreaseLive(int count = 1) {
+            if (!canDamage) return;
+
             CountLives -= count;
+
+            StartCoroutine(DisableDamageForTwoSeconds());
+        }
+
+        private IEnumerator DisableDamageForTwoSeconds() {
+            canDamage = false;
+            yield return new WaitForSeconds(2f);
+            canDamage = true;
         }
     }
 

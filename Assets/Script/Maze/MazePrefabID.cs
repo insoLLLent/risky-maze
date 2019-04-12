@@ -13,7 +13,9 @@
         /// <summary>ID для префабов стен</summary>
         WALL,
         /// <summary>ID для префабов сундуков</summary>
-        CHEST
+        CHEST,
+        /// <summary>ID для префабов ловушек</summary>
+        TRAP
     }
 
 }

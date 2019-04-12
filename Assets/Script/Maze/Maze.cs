@@ -62,6 +62,7 @@ namespace ru.lifanoff.Maze {
                 PlaceFloors(chunk);
                 PlaceExitKey(chunk);
                 PlaceChestsInDeadEnd(chunk);
+                PlaceTraps(chunk);
             }
         }
 
@@ -223,7 +224,7 @@ namespace ru.lifanoff.Maze {
         /// <summary>Разместить префабы сундуков</summary>
         /// <param name="chunk">Текущий блок лабиринта</param>
         private void PlaceChestsInDeadEnd(Chunk chunk) {
-            if (!chunk.isDeadEnd || chunk.hasExitKey || chunk.hasExitDoor) return;
+            if (!chunk.isDeadEnd || chunk.hasExitKey || chunk.hasExitDoor || chunk.hasChest || chunk.hasTrap) return;
             if (rnd.Next(0, 100) > 32) return;
 
             chunk.hasChest = true;
@@ -233,7 +234,7 @@ namespace ru.lifanoff.Maze {
 
             GameObject cloningPrefab = mazePrefabContainer.prefabs[mazePrefabID][numnberRandomPrefab];
 
-            GameObject gameObjectExitKey = Instantiate(cloningPrefab, transform) as GameObject;
+            GameObject gameObjectChest = Instantiate(cloningPrefab, transform) as GameObject;
 
             Vector3 newPosition = Vector3.zero;
             newPosition.x = chunk.x * chunkSize + chunkSize / 2f;
@@ -241,9 +242,9 @@ namespace ru.lifanoff.Maze {
 
             // Развернуть сундук в сторону отсутствующей стены
             Vector3 newRotation = Vector3.zero;
-            newRotation.x = gameObjectExitKey.transform.eulerAngles.x;
-            newRotation.y = gameObjectExitKey.transform.eulerAngles.y;
-            newRotation.z = gameObjectExitKey.transform.eulerAngles.z;
+            newRotation.x = gameObjectChest.transform.eulerAngles.x;
+            newRotation.y = gameObjectChest.transform.eulerAngles.y;
+            newRotation.z = gameObjectChest.transform.eulerAngles.z;
 
             if (!chunk.hasRightWall) {
                 newPosition.z -= 1f;
@@ -258,10 +259,32 @@ namespace ru.lifanoff.Maze {
                 newPosition.x -= 1f;
             }
 
-            gameObjectExitKey.transform.position = newPosition;
-            gameObjectExitKey.transform.eulerAngles = newRotation;
+            gameObjectChest.transform.position = newPosition;
+            gameObjectChest.transform.eulerAngles = newRotation;
 
-            gameObjectExitKey.SetActive(true);
+            gameObjectChest.SetActive(true);
+        }
+
+        /// <summary>Разместить префабы ловушек</summary>
+        /// <param name="chunk">Текущий блок лабиринта</param>
+        private void PlaceTraps(Chunk chunk) {
+            if (chunk.hasChest || chunk.isDeadEnd || chunk.hasExitKey || chunk.hasExitDoor || chunk.hasTrap) return;
+            if (rnd.Next(0, 100) > 15) return;
+
+            chunk.hasTrap = true;
+
+            MazePrefabID mazePrefabID = MazePrefabID.TRAP;
+            int numnberRandomPrefab = mazePrefabContainer.GetRandomNumberPrefab(mazePrefabID);
+
+            GameObject cloningPrefab = mazePrefabContainer.prefabs[mazePrefabID][numnberRandomPrefab];
+            GameObject gameObjectTrap = Instantiate(cloningPrefab, transform) as GameObject;
+
+            Vector3 newPosition = Vector3.zero;
+            newPosition.x = chunk.x * chunkSize + chunkSize / 2f;
+            newPosition.z = chunk.y * chunkSize;
+            gameObjectTrap.transform.position = newPosition;
+
+            gameObjectTrap.SetActive(true);
         }
 
 
@@ -291,8 +314,8 @@ namespace ru.lifanoff.Maze {
         private void RandomPlayerPosition() {
             Chunk chunk = null;
 
-            // Исключить возможность появления игрока в одном блоке с ключем от выхода
-            while (chunk == null || chunk.hasExitKey) {
+            // Исключить возможность появления игрока в определенных блоках
+            while (chunk == null || chunk.hasExitKey || chunk.hasExitKey || chunk.hasTrap) {
                 chunk = mazeStructure.GetRandomChunk();
             }
 
@@ -302,7 +325,6 @@ namespace ru.lifanoff.Maze {
             newPosition.z = chunk.y * chunkSize;
 
             currentPlayer.transform.position = newPosition;
-
 
             // Развернуть игрока в сторону, где нет стены
             Vector3 newRotation = Vector3.zero;

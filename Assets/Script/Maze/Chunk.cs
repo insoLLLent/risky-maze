@@ -141,6 +141,9 @@
         }
 
 
+        /// <summary>Есть ли ловушка</summary>
+        public bool hasTrap = false;
+
         /// <summary>Есть ли сундук</summary>
         public bool hasChest = false;
 
