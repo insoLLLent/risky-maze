@@ -7,17 +7,20 @@ namespace ru.lifanoff.Util {
     /// </summary>
     public class FaceToScreen : MonoBehaviour {
 
+        private Transform lookAtTransform = null;
         private Vector3 targetRotation = new Vector3();
         private Camera playerCamera = null;
 
         void Start() {
             playerCamera = SecondaryFunctions.GetCameraPlayer();
-            targetRotation = playerCamera.transform.eulerAngles;
         }
 
         void Update() {
+            lookAtTransform = transform;
             targetRotation = transform.eulerAngles;
-            targetRotation.y = playerCamera.transform.eulerAngles.y + 180f;
+
+            lookAtTransform.LookAt(playerCamera.transform);
+            targetRotation.y = lookAtTransform.eulerAngles.y;
             transform.eulerAngles = targetRotation;
         }
 
