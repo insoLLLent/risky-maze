@@ -11,7 +11,7 @@ namespace ru.lifanoff.Maze {
     /// </summary>
     public sealed class MazeGenerate : IEnumerable, IEnumerator {
         /// <summary>Статичная переменная для операций, использующих случайное значение</summary>
-        private static Random rnd = new Random();
+        private static Random rnd = SecondaryFunctions.GetNewRandom();
 
         /// <summary>Размер лабиринта по оси X (количество блоков по оси X)</summary>
         public int sizeX { get; private set; }

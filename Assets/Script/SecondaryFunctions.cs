@@ -65,6 +65,10 @@ namespace ru.lifanoff {
         public static int GetEnumLenght(Type enumType) {
             return Enum.GetValues(enumType).Length;
         }
+
+        public static System.Random GetNewRandom() {
+            return new System.Random(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
+        }
     }
 
 }

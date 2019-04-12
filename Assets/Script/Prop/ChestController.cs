@@ -7,7 +7,7 @@ using ru.lifanoff.Intarface;
 namespace ru.lifanoff.Prop {
 
     public class ChestController : MonoBehaviour, IUsable {
-        private static System.Random rnd = new System.Random(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
+        private static System.Random rnd = SecondaryFunctions.GetNewRandom();
 
         /// <summary>Нужен ли ключ, чтобы открыть сундук</summary>
         private bool needKey = false;

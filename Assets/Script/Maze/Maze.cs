@@ -8,7 +8,7 @@ namespace ru.lifanoff.Maze {
     /// </summary>
     [RequireComponent(typeof(MazePrefabContainer))]
     public class Maze : MonoBehaviour {
-        private System.Random rnd = new System.Random(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
+        private static System.Random rnd = SecondaryFunctions.GetNewRandom();
 
         /// <summary>Размер игрового блока</summary>
         private float chunkSize;
