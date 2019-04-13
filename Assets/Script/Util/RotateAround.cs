@@ -12,7 +12,9 @@ namespace ru.lifanoff.Util {
 
         private int currentSpeed = 0;
 
+        [Tooltip("Минимальная скорость вращения")]
         [SerializeField] private int minSpeed = 300;
+        [Tooltip("Максимальная скорость вращения")]
         [SerializeField] private int maxSpeed = 400;
 
         void Start() {
