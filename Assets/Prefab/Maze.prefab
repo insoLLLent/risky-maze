@@ -80,3 +80,6 @@ MonoBehaviour:
   - id: 5
     prefab: {fileID: 5409810010435585739, guid: a4e5f22df80ee7d4590f34801e2afaac,
       type: 3}
+  - id: 6
+    prefab: {fileID: 1004435922394712769, guid: 4550e3bb93221ff4b88cac19458b518d,
+      type: 3}

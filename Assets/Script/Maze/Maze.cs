@@ -266,25 +266,28 @@ namespace ru.lifanoff.Maze {
             gameObjectChest.SetActive(true);
         }
 
+        /// <summary>Получит количество доступных чанков для размещения ловушек</summary>
+        /// <returns>Количество доступных чанков</returns>
+        public int getCountAvailableChunksForTraps() {
+            int countChunksForTraps = 0;
+
+            foreach (Chunk chunk in mazeStructure) {
+                if (chunk.hasChest || chunk.isDeadEnd || chunk.hasExitKey || chunk.hasExitDoor) continue;
+                if (chunk.hasTrap || chunk.countNeighbourTraps > 2) continue;
+
+                countChunksForTraps++;
+            }
+
+            return countChunksForTraps;
+        }
+
         /// <summary>Разместить префабы ловушек</summary>
         private void PlaceTraps() {
-            int countTraps = Convert.ToInt32(mazeStructure.sizeX * mazeStructure.sizeY * 0.23);
+            const double percentOfTraps = 0.23;
+            int countTraps = Convert.ToInt32(mazeStructure.sizeX * mazeStructure.sizeY * percentOfTraps);
+            int countChunksForTraps = getCountAvailableChunksForTraps();
 
-            { // countTraps не должен превышать количество доступных чанков
-                int countChunksForTraps = 0;
-                foreach (Chunk chunk in mazeStructure) {
-                    if (chunk.hasChest || chunk.isDeadEnd || chunk.hasExitKey || chunk.hasExitDoor) continue;
-                    if (chunk.hasTrap || chunk.countNeighbourTraps > 2) continue;
-
-                    countChunksForTraps++;
-
-                    if (countChunksForTraps > countTraps) break;
-                }
-
-                mazeStructure.Reset();
-
-                if (countTraps > countChunksForTraps) countTraps = countChunksForTraps;
-            } // init countTraps
+            if (countTraps > countChunksForTraps) countTraps = countChunksForTraps;
 
             while (countTraps > 0) {
                 Chunk chunk = mazeStructure.GetRandomChunk();
@@ -295,6 +298,20 @@ namespace ru.lifanoff.Maze {
                 chunk.hasTrap = true;
 
                 MazePrefabID mazePrefabID = MazePrefabID.TRAP;
+                switch (rnd.Next(0, 2)) {
+                    case 0:
+                        mazePrefabID = MazePrefabID.TRAP;
+                        break;
+                    case 1:
+                        if (chunk.hasAnyWalls) {
+                            mazePrefabID = MazePrefabID.TRAP_WALL;
+                        } else {
+                            mazePrefabID = MazePrefabID.TRAP;
+                        }
+
+                        break;
+                }
+
                 int numnberRandomPrefab = mazePrefabContainer.GetRandomNumberPrefab(mazePrefabID);
 
                 GameObject cloningPrefab = mazePrefabContainer.prefabs[mazePrefabID][numnberRandomPrefab];
@@ -304,6 +321,41 @@ namespace ru.lifanoff.Maze {
                 newPosition.x = chunk.x * chunkSize + chunkSize / 2f;
                 newPosition.z = chunk.y * chunkSize;
                 gameObjectTrap.transform.position = newPosition;
+
+                // Развернуть ловушку в сторону, где есть стена
+                if (mazePrefabID == MazePrefabID.TRAP_WALL) {
+                    Vector3 newRotation = Vector3.zero;
+                    newRotation.x = gameObjectTrap.transform.rotation.x;
+                    newRotation.z = gameObjectTrap.transform.rotation.z;
+
+                    while (true) {
+                        int side = rnd.Next(0, 4);
+
+                        if (side == 0) {
+                            if (chunk.hasRightWall) {
+                                newRotation.y += 180f;
+                                break;
+                            }
+                        } else if (side == 1) {
+                            if (chunk.hasLeftWall) {
+                                newRotation.y += 0f;
+                                break;
+                            }
+                        } else if (side == 2) {
+                            if (chunk.hasBottomWall) {
+                                newRotation.y += -90f;
+                                break;
+                            }
+                        } else if (side == 3) {
+                            if (chunk.hasTopWall) {
+                                newRotation.y += 90f;
+                                break;
+                            }
+                        }
+                    }//elihw
+
+                    gameObjectTrap.transform.rotation = Quaternion.Euler(newRotation);
+                }
 
                 gameObjectTrap.SetActive(true);
 

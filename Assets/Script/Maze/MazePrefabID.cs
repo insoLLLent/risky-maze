@@ -15,7 +15,8 @@
         /// <summary>ID для префабов сундуков</summary>
         CHEST,
         /// <summary>ID для префабов ловушек</summary>
-        TRAP
+        TRAP,
+        TRAP_WALL
     }
 
 }

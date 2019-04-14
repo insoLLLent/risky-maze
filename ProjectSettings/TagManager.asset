@@ -10,6 +10,8 @@ TagManager:
   - MiniMapCamera
   - SoundController
   - MessageToPlayer
+  - Pebble
+  - UIKeyIcon
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - PostProcessing
   - Wall
   - MiniMap
-  - 
+  - Player
   - 
   - 
   - 

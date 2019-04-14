@@ -40,10 +40,26 @@ namespace ru.lifanoff.Prop {
                 loot.transform.SetParent(null);
             }
         }
+
+        void OnTriggerEnter(Collider other) {
+            PebbleOpensChest(other);
+        }
         #endregion
 
 
         public void Use() {
+            PlayerOpensChest();
+        }
+
+        private void PebbleOpensChest(Collider other) {
+            if (isOpen || !needKey || !other.CompareTag(Unchangeable.PEBBLE_TAG)) return;
+
+            Destroy(GetComponent<Collider>());
+            Destroy(other.gameObject);
+            StartCoroutine(OpenChest());
+        }
+
+        private void PlayerOpensChest() {
             if (isOpen) return;
             if (needKey && !PlayerManager.Instance.hasExitKey) {
                 PlayerManager.Instance.SendMessageToPlayer("You need the key!");
@@ -55,12 +71,13 @@ namespace ru.lifanoff.Prop {
         }
 
         private IEnumerator OpenChest() {
-            Quaternion targetRotation = 
+            Quaternion targetRotation =
                 Quaternion.Euler(chestCap.transform.localRotation.eulerAngles - new Vector3(80f, 0f, 0f));
             float smooth = 80f;
 
             while (chestCap.transform.rotation != targetRotation) {
-                chestCap.transform.localRotation = Quaternion.RotateTowards(chestCap.transform.localRotation, targetRotation, Time.deltaTime * smooth);
+                chestCap.transform.localRotation =
+                    Quaternion.RotateTowards(chestCap.transform.localRotation, targetRotation, Time.deltaTime * smooth);
                 yield return null;
             }
 

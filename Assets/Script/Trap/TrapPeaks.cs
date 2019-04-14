@@ -20,6 +20,7 @@ namespace ru.lifanoff.Trap {
         }
         #endregion
 
+        /// <summary>Инициализация и позиционирование ловушек</summary>
         private void PeaksInit() {
             for (float i = -2f; i <= 2f; i += 1.25f) {
                 for (float j = -2f; j <= 2f; j += 1.25f) {
@@ -37,6 +38,7 @@ namespace ru.lifanoff.Trap {
             }
         }
 
+        /// <summary>Случайное позиционирование дочерних объектов по оси Y</summary>
         private void DamagersInit() {
             foreach (GameObject go in allTraps) {
                 GameObject goChild = go.transform.GetChild(0)?.gameObject;

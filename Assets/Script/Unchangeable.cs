@@ -21,12 +21,14 @@ namespace ru.lifanoff {
         public const string GAME_CONTROLLER_TAG = "GameController";
         public const string SOUND_CONTROLLER_TAG = "SoundController";
         public const string MAZE_TAG = "Maze";
+        public const string PEBBLE_TAG = "Pebble";
         #endregion
 
         #region Layers
         public const string DEFAULT_LAYER = "Default";
         public const string UI_LAYER = "UI";
         public const string DRAW_ALWAYS_LAYER = "Wall";
+        public const string PLAYER_LAYER = "Player";
         #endregion
 
         #region Player
