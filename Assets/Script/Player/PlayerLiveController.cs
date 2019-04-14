@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 using ru.lifanoff.Intarface;
 
 namespace ru.lifanoff.Player {
 
-    [RequireComponent(typeof(DropPebble), typeof(UseController))]
+    [RequireComponent(typeof(DropPebble), typeof(UseController), typeof(PostProcessVolume))]
     public class PlayerLiveController : MonoBehaviour, ILives {
 
         [Tooltip("UI отображение количества жизней")]
@@ -31,8 +32,16 @@ namespace ru.lifanoff.Player {
 
         private bool canDamage = true;
 
+        private PostProcessVolume ppv = null;
+        private Vignette vignette = null;
+
         #region Unity events
         void Start() {
+            ppv = SecondaryFunctions.GetCameraPlayer().GetComponent<PostProcessVolume>();
+            ppv.profile.TryGetSettings(out vignette);
+            vignette.active = false;
+            vignette.color.overrideState = true;
+
             InitCountLives();
             UpdatePebbleText();
         }
@@ -86,8 +95,33 @@ namespace ru.lifanoff.Player {
 
         private IEnumerator DisableDamageForTwoSeconds() {
             canDamage = false;
+
+            if (CountLives > 0) {
+                StartCoroutine(VignetteDamage());
+            }
+
             yield return new WaitForSeconds(2f);
             canDamage = true;
+        }
+
+        private IEnumerator VignetteDamage() {
+            vignette.active = true;
+
+            float pp = 0f;
+
+            do {
+                pp = Mathf.PingPong(Time.time, 1);
+                vignette.color.value = Color.Lerp(Color.white, Color.red, pp);
+                yield return null;
+            } while (!canDamage);
+
+            while (pp > 0.1f) {
+                pp = Mathf.PingPong(Time.time, 1);
+                vignette.color.value = Color.Lerp(Color.white, Color.red, pp);
+                yield return null;
+            }
+
+            vignette.active = false;
         }
     }
 
