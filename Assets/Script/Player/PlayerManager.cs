@@ -57,7 +57,7 @@ namespace ru.lifanoff {
 
         private PlayerManager() {
             gravity = Physics.gravity.y;
-            currentMovement = Vector3.zero;
+            ResetStart();
 
             InitMessageToPlayer();
         }
@@ -100,6 +100,18 @@ namespace ru.lifanoff {
             yield return new WaitForSeconds(waitSeconds);
 
             messageToPlayer.text = string.Empty;
+        }
+
+        /// <summary>Сбросить до стандартных значений</summary>
+        public void ResetStart() {
+            currentMovement = Vector3.zero;
+
+            canMoving = true;
+            hasExitKey = false;
+            isGrounded = false;
+            isRunning = false;
+            isJumping = false;
+            isSlowdown = false;
         }
 
     }//class

@@ -19,6 +19,8 @@ namespace ru.lifanoff.Player {
         #region Unity Events
         void Start() {
             pm = PlayerManager.Instance;
+            pm.ResetStart();
+
             soundController = SoundController.Instance;
 
             characterController = GetComponent<CharacterController>();
