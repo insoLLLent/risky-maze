@@ -15,7 +15,7 @@ namespace ru.lifanoff.Trap {
 
         #region Unity events
         void OnCollisionEnter(Collision collision) {
-            if (audioSource == null) return;
+            if (audioSource == null || !audioSource.enabled) return;
 
             if (hitPebbleSounds != null && hitPebbleSounds.Length > 1) {
                 if (audioSource.isPlaying) {
