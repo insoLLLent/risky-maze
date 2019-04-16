@@ -7,11 +7,18 @@ namespace ru.lifanoff {
     /// </summary>
     public class SoundController : MonoBehaviour {
 
-        [Header("Звуки для сцены Game")]
+        [Header("Музыка для сцены Game")]
         [Tooltip("Фоновый звук ветра")]
         [SerializeField] private AudioClip gameBackgroundAmbience = null;
         [Tooltip("Набор фоновой музыки")]
         [SerializeField] private AudioClip[] gameBackgroundMusics = null;
+
+
+        [Header("Звуки подбора предметов")]
+        [Tooltip("Общий звук")]
+        [SerializeField] private AudioClip commonPickupSound = null;
+        [Tooltip("Поднятие ключа от выхода")]
+        [SerializeField] private AudioClip exitKeyPickupSound = null;
 
         [Header("Озвучка игрока")]
         [Tooltip("Озвучка походки игрока")]
@@ -124,6 +131,21 @@ namespace ru.lifanoff {
             ambianceAudioSource.volume = volume;
         }
 
+        #region Pickup Sounds
+        /// <summary>Проиграить звук подбора любого предмета</summary>
+        public void PlayCommonPickup() {
+            if (commonPickupSound != null) {
+                oneShotAudioSource.PlayOneShot(commonPickupSound);
+            }
+        }
+
+        /// <summary>Проиграить звук подбора ключа от выхода</summary>
+        public void PlayExitKeyPickup() {
+            if (commonPickupSound != null) {
+                oneShotAudioSource.PlayOneShot(exitKeyPickupSound);
+            }
+        }
+        #endregion
 
         #region Player Sounds
         /// <summary>Проиграить звук окончания прыжка игрока</summary>

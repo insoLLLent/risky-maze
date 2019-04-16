@@ -19,6 +19,8 @@ namespace ru.lifanoff.Player {
             if (PauseController.isPaused) return;
             if (playerLive == null) return;
 
+            SoundController.Instance.PlayCommonPickup();
+
             playerLive.IncreaseLive(countLives);
 
             Destroy(gameObject);

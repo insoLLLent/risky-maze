@@ -19,6 +19,8 @@ namespace ru.lifanoff.Player {
             if (PauseController.isPaused) return;
             if (dropPebble == null) return;
 
+            SoundController.Instance.PlayCommonPickup();
+
             dropPebble.CountPebbles += countPebbles;
 
             Destroy(gameObject);

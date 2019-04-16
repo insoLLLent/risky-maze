@@ -12,6 +12,7 @@ namespace ru.lifanoff.Exit {
         private const string DOOR_IS_OPENED_MESSAGE = "The Exit is open!";
 
         public void Use() {
+            SoundController.Instance.PlayExitKeyPickup();
             PlayerManager.Instance.hasExitKey = true;
             PlayerManager.Instance.SendMessageToPlayer(DOOR_IS_OPENED_MESSAGE);
             Destroy(gameObject);
