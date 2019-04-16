@@ -76,6 +76,7 @@ namespace ru.lifanoff.Player {
             PlayerManager.Instance.canMoving = false;
             GetComponent<DropPebble>().canDrop = false;
             GetComponent<UseController>().canUsing = false;
+            soundController.StopPlayerAudioSource();
 
             StartCoroutine(GoToGameOverScene());
         }
