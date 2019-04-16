@@ -66,8 +66,28 @@ namespace ru.lifanoff {
             return Enum.GetValues(enumType).Length;
         }
 
+        /// <summary>
+        /// Создать объект <see cref="System.Random"/> с уникальным seed
+        /// применив функцию <see cref="SecondaryFunctions.GenerateSeed"/>
+        /// </summary>
+        /// <returns>System.Random(<see cref="SecondaryFunctions.GenerateSeed"/>)</returns>
         public static System.Random GetNewRandom() {
-            return new System.Random(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
+            return new System.Random(GenerateSeed());
+        }
+
+        /// <summary>
+        /// Сгенерировать уникальный seed
+        /// </summary>
+        /// <returns>Уникальный seed</returns>
+        public static int GenerateSeed() {
+            long seed = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            long maxInt = Convert.ToInt64(int.MaxValue);
+
+            if (seed > maxInt) {
+                seed %= maxInt;
+            }
+
+            return Convert.ToInt32(seed);
         }
     }
 
