@@ -23,6 +23,7 @@ namespace ru.lifanoff {
         [SerializeField] private AudioClip gamePlayerStartJumpSound = null;
         [Tooltip("Набор звуков окончания прыжка игрока")]
         [SerializeField] private AudioClip[] gamePlayerEndJumpSounds = null;
+        [SerializeField] private AudioClip[] gamePlayerPain = null;
 
         [Header("Звуки для остальных сцен")]
         [Tooltip("Фоновая музыка")]
@@ -140,6 +141,16 @@ namespace ru.lifanoff {
             AudioClip audioClip = null;
             while (audioClip == null) {
                 audioClip = gamePlayerEndJumpSounds[Random.Range(0, gamePlayerEndJumpSounds.Length)];
+            }
+
+            oneShotAudioSource.PlayOneShot(audioClip);
+        }
+
+        /// <summary>Проиграить звук урона игрока</summary>
+        public void PlayPainPlayer() {
+            AudioClip audioClip = null;
+            while (audioClip == null) {
+                audioClip = gamePlayerPain[Random.Range(0, gamePlayerPain.Length)];
             }
 
             oneShotAudioSource.PlayOneShot(audioClip);

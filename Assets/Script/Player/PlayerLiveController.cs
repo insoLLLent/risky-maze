@@ -35,8 +35,12 @@ namespace ru.lifanoff.Player {
         private PostProcessVolume ppv = null;
         private Vignette vignette = null;
 
+        private SoundController soundController = null;
+
         #region Unity events
         void Start() {
+            soundController = SoundController.Instance;
+
             ppv = SecondaryFunctions.GetCameraPlayer().GetComponent<PostProcessVolume>();
             ppv.profile.TryGetSettings(out vignette);
             vignette.active = false;
@@ -89,6 +93,8 @@ namespace ru.lifanoff.Player {
             if (!canDamage) return;
 
             CountLives -= count;
+
+            soundController.PlayPainPlayer();
 
             StartCoroutine(DisableDamageForTwoSeconds());
         }

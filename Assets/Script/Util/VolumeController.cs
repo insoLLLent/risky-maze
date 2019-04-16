@@ -18,7 +18,7 @@ namespace ru.lifanoff.Util {
         }
 
         private IEnumerator CheckVolume() {
-            while (true) {
+            while (audioSource != null && audioSource.clip != null) {
                 if (PauseController.isPaused) {
                     if (audioSource.isPlaying) {
                         audioSource.Pause();

@@ -21,6 +21,9 @@ namespace ru.lifanoff.Prop {
 
         [Tooltip("Крышка сундука")]
         [SerializeField] private GameObject chestCap = null;
+        [Tooltip("Звук открытия крышки сундука")]
+        [SerializeField] private AudioSource chestCapAudio = null;
+
         [Header("Лут")]
         [Tooltip("Позиция спавна лута")]
         [SerializeField] private Transform lootSpawnTransfrom = null;
@@ -74,6 +77,11 @@ namespace ru.lifanoff.Prop {
             Quaternion targetRotation =
                 Quaternion.Euler(chestCap.transform.localRotation.eulerAngles - new Vector3(80f, 0f, 0f));
             float smooth = 80f;
+
+            if (chestCapAudio != null && chestCapAudio.clip != null && !chestCapAudio.isPlaying) {
+                chestCapAudio.Play();
+                yield return null;
+            }
 
             while (chestCap.transform.rotation != targetRotation) {
                 chestCap.transform.localRotation =
