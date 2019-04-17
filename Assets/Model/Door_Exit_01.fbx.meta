@@ -4,13 +4,29 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Door_Exit_Name
     400000: //RootNode
+    400002: Door_Exit_Name
     2100000: Door_Exit_02_Mat
     2100002: Door_Exit_01_Mat
     2300000: //RootNode
+    2300002: Door_Exit_Name
     3300000: //RootNode
+    3300002: Door_Exit_Name
     4300000: Door_Exit_01
-  externalObjects: {}
+    4300002: Door_Exit
+    4300004: Door_Exit_Name
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door_Exit_01_Mat
+    second: {fileID: 2100000, guid: 4e27e5e081aa62f48a2d56d0719d6ed3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door_Exit_02_Mat
+    second: {fileID: 2100000, guid: cc2fe155603efb34ab8e8f32181c5b7c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

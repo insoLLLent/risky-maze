@@ -220,8 +220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1855363851909349896}
-  hitPebbleSlowdownSounds: {fileID: 8300000, guid: 94e673869cec1554591ef8308df16537,
-    type: 3}
   hitPebbleSounds:
   - {fileID: 8300000, guid: 4054da74e6570904e90a31d3aa330323, type: 3}
   - {fileID: 8300000, guid: fa230293db994fa49a43758c354ea550, type: 3}
@@ -263,6 +261,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sound3D_Single
+      objectReference: {fileID: 0}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4054da74e6570904e90a31d3aa330323, type: 3}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8182757715788407137, guid: 2f6c23afe8db3464298eedaf66e58fa3,
         type: 3}
@@ -319,21 +337,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
-        type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4054da74e6570904e90a31d3aa330323, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6c23afe8db3464298eedaf66e58fa3, type: 3}
 --- !u!4 &1947063645450095845 stripped

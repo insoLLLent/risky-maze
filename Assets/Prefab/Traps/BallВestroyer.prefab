@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4428c1c8a5f58947849360ada3176e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 110
+  minSpeed: 115
   maxSpeed: 130
 --- !u!1 &5720087045865039430
 GameObject:
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4428c1c8a5f58947849360ada3176e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 110
+  minSpeed: 115
   maxSpeed: 130
 --- !u!1001 &8907464150931268574
 PrefabInstance:
@@ -1501,6 +1501,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sound3D_Single
+      objectReference: {fileID: 0}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c88db5c7329cad4286dfbe2e2db4e9b, type: 3}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8182757715788407137, guid: 2f6c23afe8db3464298eedaf66e58fa3,
         type: 3}
@@ -1572,16 +1582,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0c88db5c7329cad4286dfbe2e2db4e9b, type: 3}
-    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6c23afe8db3464298eedaf66e58fa3, type: 3}
 --- !u!4 &726018223386870463 stripped
@@ -1602,6 +1602,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound3D_Single
       objectReference: {fileID: 0}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c9585eb8d021fae4787040ae39b97ad9, type: 3}
     - target: {fileID: 8182757715788407137, guid: 2f6c23afe8db3464298eedaf66e58fa3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1657,11 +1662,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: c9585eb8d021fae4787040ae39b97ad9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6c23afe8db3464298eedaf66e58fa3, type: 3}
 --- !u!4 &1019435448458443909 stripped
