@@ -275,6 +275,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound3D_Single
       objectReference: {fileID: 0}
+    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3962953f2792eb84385f986f669e9c22, type: 3}
     - target: {fileID: 8182757715788407137, guid: 2f6c23afe8db3464298eedaf66e58fa3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -330,11 +335,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8301314231755517836, guid: 2f6c23afe8db3464298eedaf66e58fa3,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3962953f2792eb84385f986f669e9c22, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6c23afe8db3464298eedaf66e58fa3, type: 3}
 --- !u!4 &456747858235825716 stripped

@@ -83,7 +83,7 @@ namespace ru.lifanoff.Player {
 
         private IEnumerator GoToGameOverScene() {
             yield return new WaitForSeconds(2.0f);
-            GameController.Instance.GoToNextScene(Unchangeable.GAME_OVER_SCENE_NAME);
+            GameController.Instance.GoToNextScene(Unchangeable.MAIN_MENU_SCENE_NAME);
         }
 
         public void IncreaseLive(int count = 1) {

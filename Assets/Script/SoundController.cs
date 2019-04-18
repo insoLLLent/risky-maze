@@ -78,7 +78,7 @@ namespace ru.lifanoff {
         }
 
         void Update() {
-            if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
+            /*if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
                 if (Instance.musicAudioSource.clip == commonBackgroundMusic) {
                     currentBackgroundMusic = gameBackgroundMusics[Random.Range(0, gameBackgroundMusics.Length)];
                     Instance.StopMusic();
@@ -93,6 +93,13 @@ namespace ru.lifanoff {
                     Instance.StopMusic();
                     Instance.PlayMusic(commonBackgroundMusic);
                 }
+            }*/
+
+            if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
+                Instance.StopAmbiance();
+                Instance.PlayAmbiance();
+            } else {
+                Instance.StopAmbiance();
             }
         }
         #endregion
