@@ -73,3 +73,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: da19243fa013f6d4f913edd450a79709, type: 3}
   commonBackgroundMusic: {fileID: 8300000, guid: 0c58807106ee0cf4da1de1db946a1bae,
     type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 1a4478ddccacc524ca7159566f511e99, type: 3}

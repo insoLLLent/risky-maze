@@ -37,6 +37,8 @@ namespace ru.lifanoff {
         [Header("Звуки для остальных сцен")]
         [Tooltip("Фоновая музыка")]
         [SerializeField] private AudioClip commonBackgroundMusic = null;
+        [Tooltip("Game Over")]
+        [SerializeField] private AudioClip gameOverMusic = null;
 
 
         /// <summary>Единственный экземпляр класса <seealso cref="SoundController"/></summary>
@@ -253,6 +255,15 @@ namespace ru.lifanoff {
                 musicAudioSource.clip = null;
                 musicAudioSource.Stop();
             }
+        }
+
+        /// <summary>Звук проигрыша. При этом отключаются все прочие звуки.</summary>
+        public void PlayGameOver() {
+            StopPlayerAudioSource();
+            StopMusic();
+            StopAmbiance();
+
+            oneShotAudioSource.PlayOneShot(gameOverMusic);
         }
         #endregion Music
 
