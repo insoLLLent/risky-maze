@@ -220,9 +220,9 @@ namespace ru.lifanoff {
         }
 
         public void StopPlayerAudioSource() {
-            if (playerAudioSource.isPlaying) {
-                playerAudioSource.clip = null;
+            if (playerAudioSource.clip != null && playerAudioSource.isPlaying) {
                 playerAudioSource.Stop();
+                playerAudioSource.clip = null;
             }
         }
 
@@ -254,9 +254,9 @@ namespace ru.lifanoff {
 
         /// <summary>Остановить музыку</summary>
         public void StopMusic() {
-            if (musicAudioSource.isPlaying) {
-                musicAudioSource.clip = null;
+            if (musicAudioSource.clip != null && musicAudioSource.isPlaying) {
                 musicAudioSource.Stop();
+                musicAudioSource.clip = null;
             }
         }
 
@@ -281,9 +281,9 @@ namespace ru.lifanoff {
 
         /// <summary>Остановить музыку</summary>
         public void StopAmbiance() {
-            if (ambianceAudioSource.isPlaying) {
-                ambianceAudioSource.clip = null;
+            if (ambianceAudioSource.clip != null && ambianceAudioSource.isPlaying) {
                 ambianceAudioSource.Stop();
+                ambianceAudioSource.clip = null;
             }
         }
         #endregion Ambiance
