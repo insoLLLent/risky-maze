@@ -46,8 +46,7 @@ MonoBehaviour:
   gameBackgroundAmbience: {fileID: 8300000, guid: 37224c20d9630684ab1fb5ae65b46dc0,
     type: 3}
   gameBackgroundMusics:
-  - {fileID: 8300000, guid: 4d4c7b2cd08b6124280663ed3378acf9, type: 3}
-  - {fileID: 8300000, guid: 8ab0d8d8caa69b84ebf4b3db93699eb7, type: 3}
+  - {fileID: 8300000, guid: bfe0000b5f6c88844b759b635e144309, type: 3}
   commonPickupSound: {fileID: 8300000, guid: 6644bfdf99f4a2e4e8193834b81179d5, type: 3}
   exitKeyPickupSound: {fileID: 8300000, guid: 2a98544e7a392e74f99d9535726146a3, type: 3}
   gamePlayerSlowdownSound: {fileID: 8300000, guid: 323abc543041223479fba12ef97627ec,
@@ -71,7 +70,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6d6163410edbcba419b327c547ff16e8, type: 3}
   - {fileID: 8300000, guid: f7607c60fd072d845911fe0b27971e3e, type: 3}
   - {fileID: 8300000, guid: da19243fa013f6d4f913edd450a79709, type: 3}
-  commonBackgroundMusic: {fileID: 8300000, guid: 0c58807106ee0cf4da1de1db946a1bae,
+  commonBackgroundMusic: {fileID: 8300000, guid: f0472e1b35ad50e4e98d0ca50fba80d1,
     type: 3}
   gameOverMusic: {fileID: 8300000, guid: 1a4478ddccacc524ca7159566f511e99, type: 3}
   clickButtonSound: {fileID: 8300000, guid: 2e12b76736d7a5043ba43dbce0e380cd, type: 3}

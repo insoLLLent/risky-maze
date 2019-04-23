@@ -9,7 +9,7 @@ namespace ru.lifanoff.Exit {
     /// </summary>
     public class ExitKey : MonoBehaviour, IUsable {
         /// <summary>Сообщение для игрока, если он взял ключ и открыл дверь</summary>
-        private const string DOOR_IS_OPENED_MESSAGE = "The Exit is open!";
+        private const string DOOR_IS_OPENED_MESSAGE = "The exit opened!";
 
         public void Use() {
             SoundController.Instance.PlayExitKeyPickup();

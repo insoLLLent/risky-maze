@@ -83,11 +83,14 @@ namespace ru.lifanoff {
         }
 
         void Update() {
-            /*if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
+            if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
                 if (Instance.musicAudioSource.clip == commonBackgroundMusic) {
-                    currentBackgroundMusic = gameBackgroundMusics[Random.Range(0, gameBackgroundMusics.Length)];
                     Instance.StopMusic();
-                    Instance.PlayMusic(currentBackgroundMusic);
+
+                    if (gameBackgroundMusics.Length > 0) {
+                        currentBackgroundMusic = gameBackgroundMusics[Random.Range(0, gameBackgroundMusics.Length)];
+                        Instance.PlayMusic(currentBackgroundMusic);
+                    }
 
                     Instance.StopAmbiance();
                     Instance.PlayAmbiance();
@@ -98,13 +101,6 @@ namespace ru.lifanoff {
                     Instance.StopMusic();
                     Instance.PlayMusic(commonBackgroundMusic);
                 }
-            }*/
-
-            if (GameController.Instance.currentSceneName == Unchangeable.GAME_SCENE_NAME) {
-                Instance.StopAmbiance();
-                Instance.PlayAmbiance();
-            } else {
-                Instance.StopAmbiance();
             }
         }
         #endregion
@@ -145,7 +141,7 @@ namespace ru.lifanoff {
 
             oneShotAudioSource.volume = volume;
             playerAudioSource.volume = volume;
-            musicAudioSource.volume = volume / 2f;
+            musicAudioSource.volume = volume;
             ambianceAudioSource.volume = volume;
         }
 
